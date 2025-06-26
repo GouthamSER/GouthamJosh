@@ -1,9 +1,11 @@
+/* Reset & Box Sizing */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* Theme Variables */
 :root {
   --bg-color: #0d1117;
   --text-color: #c9d1d9;
@@ -12,11 +14,23 @@
   --border-color: #30363d;
 }
 
+/* Light Theme Overrides */
+body.light {
+  --bg-color: #f5f5f5;
+  --text-color: #222;
+  --accent-color: #005eff;
+  --card-bg: #ffffff;
+  --border-color: #ccc;
+}
+
+/* Base Layout */
 body {
   font-family: 'Inter', sans-serif;
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
+  text-align: center;
+  padding: 40px 20px;
 }
 
 .container {
@@ -25,6 +39,7 @@ body {
   padding: 20px;
 }
 
+/* Header */
 header, footer {
   text-align: center;
   padding: 20px 0;
@@ -38,12 +53,20 @@ header, footer {
   border: 3px solid var(--accent-color);
 }
 
+/* Headings */
 h1 {
   font-size: 2.5rem;
   color: var(--accent-color);
   margin-bottom: 10px;
 }
 
+h2 {
+  margin-top: 2em;
+  font-size: 1.8rem;
+  color: #1DB954;
+}
+
+/* Blinking Cursor */
 .cursor {
   display: inline-block;
   color: var(--accent-color);
@@ -55,6 +78,7 @@ h1 {
   50% { opacity: 0; }
 }
 
+/* Social Links */
 .socials a {
   margin: 0 10px;
   color: var(--text-color);
@@ -65,6 +89,7 @@ h1 {
   color: var(--accent-color);
 }
 
+/* Theme Toggle Button */
 #theme-toggle {
   margin: 10px;
   padding: 8px 12px;
@@ -81,32 +106,42 @@ h1 {
   color: #fff;
 }
 
-.marquee-container {
-  overflow: hidden;
-  white-space: nowrap;
-  margin: 30px 0;
-  background-color: var(--card-bg);
-  padding: 10px;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
+/* Spotify Card Section */
+.spotify-card {
+  margin-top: 20px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1.2s ease-out forwards;
 }
 
-.marquee span {
-  display: inline-block;
-  padding-left: 100%;
-  animation: marquee 15s linear infinite;
-  font-size: 1rem;
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0%);
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
   }
-  to {
-    transform: translateX(-100%);
+  60% {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 
+img.spotify {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 16px;
+  box-shadow: 0 0 14px rgba(29, 185, 84, 0.4);
+  transition: transform 0.3s ease;
+}
+
+img.spotify:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(29, 185, 84, 0.6);
+}
+
+/* Projects Section */
 .projects h2 {
   margin: 30px 0 20px;
   font-size: 2rem;
@@ -143,17 +178,32 @@ h1 {
   margin-bottom: 8px;
 }
 
+/* Footer */
 footer {
   margin-top: 40px;
   font-size: 0.9rem;
   color: var(--text-color);
 }
 
-/* Light Theme */
-body.light {
-  --bg-color: #f5f5f5;
-  --text-color: #222;
-  --accent-color: #005eff;
-  --card-bg: #ffffff;
-  --border-color: #ccc;
+/* Marquee (optional) */
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 30px 0;
+  background-color: var(--card-bg);
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
 }
+
+.marquee span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 15s linear infinite;
+  font-size: 1rem;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0%); }
+  to { transform: translateX(-100%); }
+  }
