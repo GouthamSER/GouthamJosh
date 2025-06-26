@@ -6,23 +6,41 @@
   <title>Goutham Josh</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="dark">
+  <div class="container">
+    <header>
+      <img id="profile-pic" src="your-profile.jpg" alt="Profile Picture" />
+      <h1>Goutham Josh <span class="cursor">|</span></h1>
+      <div class="socials">
+        <a href="https://github.com/GouthamSER">GitHub</a>
+      </div>
+      <button id="theme-toggle">Toggle Theme</button>
+    </header>
 
-  <h1>Welcome to Goutham Josh’s Website</h1>
-  <p>Hi! I'm Goutham — check out what I'm listening to 👇</p>
+    <section class="spotify-card">
+      <h2>🎧 Now Playing on Spotify</h2>
+      <a href="https://open.spotify.com/user/uy00a5utij04dwch2qiyazjlw" target="_blank">
+        <img
+          class="spotify"
+          src="https://spotify-github-profile.kittinanx.com/api/view?uid=uy00a5utij04dwch2qiyazjlw&cover_image=true&theme=novatorem&bar_color=1DB954&bar_color_cover=true"
+          alt="Now Playing on Spotify"
+        />
+      </a>
+    </section>
 
-  <h2>🎧 Now Playing on Spotify</h2>
-  <div class="spotify-card">
-    <a href="https://open.spotify.com/user/uy00a5utij04dwch2qiyazjlw" target="_blank">
-      <img
-        class="spotify"
-        src="https://spotify-github-profile.kittinanx.com/api/view?uid=uy00a5utij04dwch2qiyazjlw&cover_image=true&theme=novatorem&bar_color=1DB954&bar_color_cover=true"
-        alt="Now Playing on Spotify"
-      />
-    </a>
+    <section class="projects">
+      <h2>📦 Projects</h2>
+      <div class="repo-list">
+        <!-- Add your GitHub projects here -->
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Goutham Josh. All rights reserved.</p>
+    </footer>
   </div>
 
-  <p style="margin-top: 50px;">🎶 Updated live from Spotify whenever I'm listening.</p>
-
+  <!-- Link external JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>
