@@ -4,7 +4,54 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My Dynamic Profile</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    body.light {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    body.dark {
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    .marquee {
+      margin-top: 40px;
+      font-weight: bold;
+      color: #ff5722;
+      font-size: 20px;
+    }
+
+    .spotify-container {
+      margin-top: 30px;
+    }
+
+    .spotify {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+  </style>
 </head>
 <body class="light">
   <div class="container">
@@ -29,6 +76,25 @@
     </marquee>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    const userProfile = {
+      name: "Goutham Josh",
+      age: 19,
+      status: "Studying Computer Science",
+      hobby: "CODER aI"
+    };
+
+    window.onload = () => {
+      document.getElementById("name").textContent = `Name: ${userProfile.name}`;
+      document.getElementById("age").textContent = `Age: ${userProfile.age}`;
+      document.getElementById("status").textContent = `Work/Study: ${userProfile.status}`;
+      document.getElementById("hobby").textContent = `Hobby: ${userProfile.hobby}`;
+
+      document.getElementById("toggle-theme").addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        document.body.classList.toggle("light");
+      });
+    };
+  </script>
 </body>
 </html>
