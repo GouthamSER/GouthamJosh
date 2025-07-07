@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Dynamic Profile</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Dynamic Profile</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body class="light">
-    <div class="container">
-        <h1 id="name">Name: </h1>
-        <p id="age">Age: </p>
-        <p id="status">Work/Study: </p>
-        <p id="hobby">Hobby: </p>
+  <div class="container">
+    <h1 id="name">Name: </h1>
+    <p id="age">Age: </p>
+    <p id="status">Work/Study: </p>
+    <p id="hobby">Hobby: </p>
 
-        <button id="toggle-theme">🌙 Toggle Dark/Light Mode</button>
+    <button id="toggle-theme">🌙 Toggle Dark/Light Mode</button>
 
-        <marquee behavior="scroll" direction="left" class="marquee">
-            Welcome to my personal website! 🎉🚀
-        </marquee>
+    <div class="spotify-container">
+      <h2>🎵 Now Playing on Spotify</h2>
+      <img
+        class="spotify"
+        src="https://spotify-github-profile.kittinanx.com/api/view?uid=uy00a5utij04dwch2qiyazjlw&cover_image=true&theme=novatorem&bar_color=1DB954&bar_color_cover=true"
+        alt="Now Playing on Spotify"
+      />
     </div>
 
-    <script src="script.js"></script>
+    <marquee behavior="scroll" direction="left" class="marquee">
+      Welcome to my personal website! 🎉🚀
+    </marquee>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
