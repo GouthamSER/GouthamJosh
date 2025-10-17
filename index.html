@@ -11,27 +11,32 @@
 <body>
 
 <!-- Navigation -->
-<nav>
+<nav role="navigation">
     <div class="nav-container">
         <div class="logo" data-aos="zoom-out-down" data-aos-duration="1500">
-            <span class="shuffle-text" data-value="VERSATILE">VERSATILE</span>
+            <button class="brand-btn shuffle-text" data-value="VERSATILE" aria-label="Go to home">VERSATILE</button>
         </div>
-        <div class="links">
+
+        <div class="links" role="menubar" aria-label="Main navigation">
             <a href="#home">Home</a>
             <a href="#about">About</a>
             <a href="#skills">Skills</a>
             <a href="#projects">Projects</a>
             <a href="#contact">Contact</a>
         </div>
+
+        <button class="hamburg" aria-label="Open menu" aria-expanded="false">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
     </div>
-    <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
-    <div class="dropdown">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-        <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+
+    <div class="dropdown" role="menu" aria-hidden="true">
+        <a role="menuitem" href="#home">Home</a>
+        <a role="menuitem" href="#about">About</a>
+        <a role="menuitem" href="#skills">Skills</a>
+        <a role="menuitem" href="#projects">Projects</a>
+        <a role="menuitem" href="#contact">Contact</a>
+        <button class="cancel" aria-label="Close menu"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
     </div>
 </nav>
 
@@ -39,7 +44,7 @@
 <section id="home">
     <div class="main-container">
         <div class="image" data-aos="zoom-in-right" data-aos-duration="3000">
-            <img src="assests/main.jpg" alt="Goutham Josh">
+            <img src="assests/main.jpg" alt="Portrait of Goutham Josh">
         </div>
         <div class="content">
             <h1 data-aos="fade-right" data-aos-duration="1500" data-aos-delay="100">
@@ -52,32 +57,32 @@
                 A vibrant 19-year-old pursuing a Bachelor of Computer Applications with a deep passion for cybersecurity.
             </p>
 
-            <div class="social-links" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1200">
-                <a href="https://www.linkedin.com/in/imgouthamjosh/"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com/GouthamSER"><i class="fa-brands fa-github"></i></a>
-                <a href="https://www.facebook.com/goutham.josh.58"><i class="fa-brands fa-facebook"></i></a>
+            <div class="social-links" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1200" aria-label="Social links">
+                <a href="https://www.linkedin.com/in/imgouthamjosh/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin" aria-hidden="true"></i><span class="sr-only">LinkedIn</span></a>
+                <a href="https://github.com/GouthamSER" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span></a>
+                <a href="https://www.facebook.com/goutham.josh.58" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook" aria-hidden="true"></i><span class="sr-only">Facebook</span></a>
             </div>
 
             <div class="btn" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1700">
-                <button onclick="downloadCV()">Download CV</button>
+                <a href="assests/Goutham_Josh_CV.pdf" class="btn" download>Download CV</a>
             </div>
 
             <!-- Music Buttons -->
             <div class="music-buttons" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1800">
-                <button id="playButton1" class="play-button"><i class="fa-solid fa-play"></i>  1</button>
-                <button id="playButton2" class="play-button"><i class="fa-solid fa-play"></i>  2</button>
-                <button id="playButton3" class="play-button"><i class="fa-solid fa-play"></i>  3</button>
+                <button id="playButton1" class="play-button" aria-label="Play track 1"><i class="fa-solid fa-play"></i>  1</button>
+                <button id="playButton2" class="play-button" aria-label="Play track 2"><i class="fa-solid fa-play"></i>  2</button>
+                <button id="playButton3" class="play-button" aria-label="Play track 3"><i class="fa-solid fa-play"></i>  3</button>
             </div>
 
             <!-- Equalizer -->
-            <div class="music-equalizer">
+            <div class="music-equalizer" aria-hidden="true">
                 <div class="bar bar1"></div>
                 <div class="bar bar2"></div>
                 <div class="bar bar3"></div>
                 <div class="bar bar4"></div>
                 <div class="bar bar5"></div>
             </div>
-            <div class="now-playing"></div>
+            <div class="now-playing" aria-live="polite"></div>
         </div>
     </div>
 </section>
@@ -85,9 +90,30 @@
 <!-- About Section -->
 <section id="about">
     <div class="main-container">
-        <div class="content">
-            <h1>About Me</h1>
-            <p>I am a passionate individual with a keen interest in bot development. Currently pursuing a Bachelor of Computer Applications[BCA], I am dedicated to learning and growing in hacking and development.</p>
+        <div class="content about-grid">
+            <div class="about-text fullwidth" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="100">
+                <h1>About Me</h1>
+                <p>
+                    I'm a 19‑year‑old BCA student with a strong focus on cybersecurity and bot development.
+                    I enjoy building automation tools, learning applied security techniques, and contributing to open source.
+                </p>
+
+                <ul class="about-highlights" aria-label="Highlights">
+                    <li><i class="fa-solid fa-check" aria-hidden="true"></i> Bot development (Telegram / WhatsApp)</li>
+                    <li><i class="fa-solid fa-check" aria-hidden="true"></i> Automation & scripting (Python)</li>
+                    <li><i class="fa-solid fa-check" aria-hidden="true"></i> Hands‑on with databases (MongoDB, Redis)</li>
+                    <li><i class="fa-solid fa-check" aria-hidden="true"></i> Version control & deployment (Git)</li>
+                </ul>
+
+                <div class="about-actions">
+                    <a class="btn" href="assests/Goutham_Josh_CV.pdf" download>Download CV</a>
+                    <a class="btn outline" href="#contact">Contact Me</a>
+                </div>
+
+                <p class="small" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                    Interested in collaborations, challenges or internships — always open to learning new things.
+                </p>
+            </div>
         </div>
     </div>
 </section>
@@ -96,16 +122,26 @@
 <section id="skills">
     <div class="main-container">
         <div class="content">
-            <h1>Skills</h1>
-            <ul>
-                <li>C Programming</li>
-                <li>JAVA</li>
-                <li>SQL/DBMS</li>
-                <li>C++</li>
-                <li>Python</li>
-                <li>HTML & CSS</li>
-                <li>Data Structure[DS]</li>
-            </ul>
+            <h1 data-aos="fade-up" data-aos-duration="1200">Skills</h1>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
+                Practical experience and proficiency levels across languages, web, databases and tools.
+            </p>
+
+            <div class="skills-grid" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+                <div class="skill-pills" aria-label="Key skills">
+                    <button class="skill-pill" type="button">C</button>
+                    <button class="skill-pill" type="button">C++</button>
+                    <button class="skill-pill" type="button">Java</button>
+                    <button class="skill-pill" type="button">SQL / DBMS</button>
+                    <button class="skill-pill" type="button">HTML</button>
+                    <button class="skill-pill" type="button">CSS</button>
+                    <button class="skill-pill" type="button">JavaScript</button>
+                </div>
+            </div>
+
+            <p class="skills-note" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300">
+                Skills are self-assessed and updated regularly. Interested in collaborations or learning new technologies.
+            </p>
         </div>
     </div>
 </section>
@@ -114,29 +150,112 @@
 <section id="projects">
     <div class="main-container">
         <div class="content">
-            <h1>Projects</h1>
-            <div class="projects-container">
-                <div class="project-card">
-                    <h3>KuttuBotMD</h3>
-                    <p>Whatsapp MD BOT free to use with group automation</p>
-                    <a href="https://github.com/GouthamSER/KuttuBotMD" target="_blank">
-                        <i class="fa-brands fa-github"></i> View Repo
-                    </a>
-                </div>
-                <div class="project-card">
-                    <h3>2DB</h3>
-                    <p>Auto filter bot Pyrogram framework using 2DB MONGO.</p>
-                    <a href="https://github.com/GouthamSER/2DB" target="_blank">
-                        <i class="fa-brands fa-github"></i> View Repo
-                    </a>
-                </div>
-                <div class="project-card">
-                    <h3>KuttuBot</h3>
-                    <p>Advanced Telegram auto filter bot Pyrogram framework with multiple utilities.</p>
-                    <a href="https://github.com/GouthamSER/KuttuBot" target="_blank">
-                        <i class="fa-brands fa-github"></i> View Repo
-                    </a>
-                </div>
+            <h1 data-aos="fade-up" data-aos-duration="1200">Projects</h1>
+
+            <p class="section-subtitle" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
+                Selected works — repositories, demos and quick tech notes.
+            </p>
+
+            <div class="projects-grid" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+                <article class="project-card" aria-labelledby="proj-kuttubotmd">
+                    <img src="assests/projects/kuttubotmd.jpg" alt="KuttuBotMD preview" class="project-thumb">
+                    <div class="project-body">
+                        <h3 id="proj-kuttubotmd">KuttuBotMD <span class="badge">Free</span></h3>
+                        <p>Whatsapp MD bot for group automation — commands, moderation and auto-responses.</p>
+                        <ul class="tech-list">
+                            <li>Node.js</li>
+                            <li>Baileys</li>
+                            <li>MongoDB</li>
+                        </ul>
+
+                        <div class="project-actions">
+                            <a class="btn" href="https://github.com/GouthamSER/KuttuBotMD" target="_blank" rel="noopener noreferrer">
+                                <i class="fa-brands fa-github" aria-hidden="true"></i> View Repo
+                            </a>
+                            <a class="btn" href="https://qrkuttubotmd.koyeb.app" target="_blank" rel="noopener noreferrer" title="Open demo"> <i class="fa-solid fa-globe" aria-hidden="true"></i> QrCode Linker</a>
+                            <details class="project-details">
+                                <summary>Details</summary>
+                                <p>Supports group automations like welcome messages, anti-spam, and scheduled jobs. Configurable via JSON and environment variables.</p>
+                            </details>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card" aria-labelledby="proj-2db">
+                    <img src="assests/projects/2db.jpg" alt="2DB preview" class="project-thumb">
+                    <div class="project-body">
+                        <h3 id="proj-2db">2DB <span class="badge">Stable</span></h3>
+                        <p>Auto filter bot built on Pyrogram, integrated with MongoDB for quick query and storage.</p>
+                        <ul class="tech-list">
+                            <li>Python</li>
+                            <li>Pyrogram</li>
+                            <li>MongoDB</li>
+                        </ul>
+
+                        <div class="project-actions">
+                            <a class="btn" href="https://github.com/GouthamSER/2DB" target="_blank" rel="noopener noreferrer">
+                                <i class="fa-brands fa-github" aria-hidden="true"></i> View Repo
+                            </a>
+                            <details class="project-details">
+                                <summary>Details</summary>
+                                <p>Uses efficient filters and tag-based routing. Includes admin tools for moderation and backup scripts.</p>
+                            </details>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card" aria-labelledby="proj-kuttubot">
+                    <img src="assests/projects/kuttubot.jpg" alt="KuttuBot preview" class="project-thumb">
+                    <div class="project-body">
+                        <h3 id="proj-kuttubot">KuttuBot <span class="badge">Advanced</span></h3>
+                        <p>Telegram auto-filter bot with utilities: media conversion, search, and custom pipelines.</p>
+                        <ul class="tech-list">
+                            <li>Python</li>
+                            <li>Pyrogram</li>
+                            <li>Redis</li>
+                        </ul>
+
+                        <div class="project-actions">
+                            <a class="btn" href="https://github.com/GouthamSER/KuttuBot" target="_blank" rel="noopener noreferrer">
+                                <i class="fa-brands fa-github" aria-hidden="true"></i> View Repo
+                            </a>
+                            <details class="project-details">
+                                <summary>Details</summary>
+                                <p>Multiple worker processes, plugin architecture and detailed logging to ease deployments and debugging.</p>
+                            </details>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="project-card" aria-labelledby="proj-igdwntg">
+                    <img src="assests/projects/ig-dwn-tg.jpg" alt="IG-DWN-TG preview" class="project-thumb">
+                    <div class="project-body">
+                        <h3 id="proj-igdwntg">IG-DWN-TG <span class="badge">Tool</span></h3>
+                        <p>Instagram media downloader bot that forwards content to Telegram — lightweight, supports captions and basic filters.</p>
+                        <ul class="tech-list">
+                            <li>Python</li>
+                            <li>Pyrogram / Telethon</li>
+                            <li>Requests</li>
+                        </ul>
+
+                        <div class="project-actions">
+                            <a class="btn" href="https://github.com/GouthamSER/IG-DWN-TG" target="_blank" rel="noopener noreferrer">
+                                <i class="fa-brands fa-github" aria-hidden="true"></i> View Repo
+                            </a>
+                            <a class="btn" href="https://t.me/kuttu3_bot" target="_blank" rel="noopener noreferrer" title="Open demo"> <i class="fa-solid fa-globe" aria-hidden="true"></i> Bot </a>
+                            <details class="project-details">
+                                <summary>Details</summary>
+                                <p>Designed for quick media retrieval from public Instagram posts/profiles and posting into Telegram chats. Includes basic rate-limiting and download queueing.</p>
+                            </details>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="projects-footer" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300">
+                <a class="btn outline" href="https://github.com/GouthamSER?tab=repositories" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-github" aria-hidden="true"></i> See all projects on GitHub
+                </a>
             </div>
         </div>
     </div>
@@ -147,7 +266,7 @@
     <div class="main-container">
         <div class="content">
             <h1>Contact</h1>
-            <form class="contact-form" action="mailto:gouthamjosh22@gmail.com" method="post" enctype="text/plain">
+            <form class="contact-form" action="mailto:gouthamjosh22@gmail.com?subject=Portfolio%20Contact&body=Name:%20%0D%0AEmail:%20%0D%0AMessage:%20" method="GET">
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" required>
@@ -160,8 +279,18 @@
                     <label for="message">Message:</label>
                     <textarea id="message" name="message" rows="4" required></textarea>
                 </div>
-                <button type="submit">Send</button>
+
+                <button type="submit" class="btn btn-email">Send</button>
             </form>
+            <div class="contact-quick">
+                    <!-- Replace `YourTelegram` and `YOURNUMBER` with your real handles -->
+                    <a class="btn btn-telegram" href="https://t.me/im_goutham_josh" target="_blank" rel="noopener noreferrer" aria-label="Open Telegram">
+                        <i class="fa-brands fa-telegram" aria-hidden="true"></i> Telegram
+                    </a>
+                    <a class="btn btn-whatsapp" href="https://wa.me/+91703489741?text=Hi%20Goutham" target="_blank" rel="noopener noreferrer" aria-label="Open WhatsApp">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp
+                    </a>
+                </div>
         </div>
     </div>
 </section>
@@ -170,17 +299,17 @@
     <div class="footer-container">
         <p>&copy; 2025 Goutham Josh. All rights reserved.</p>
         <div class="footer-links">
-            <a href="#home"><i class="fa-solid fa-arrow-up"></i> Back to Top</a>
-            <a href="https://www.linkedin.com/in/imgouthamjosh/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="https://github.com/GouthamSER" target="_blank"><i class="fa-brands fa-github"></i></a>
-            <a href="https://www.facebook.com/goutham.josh.58"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#home"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i> Back to Top</a>
+            <a href="https://www.linkedin.com/in/imgouthamjosh/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
+            <a href="https://github.com/GouthamSER" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/goutham.josh.58" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
         </div>
     </div>
 </footer>
 
 
 <!-- Back to Top -->
-<button id="backToTop"><i class="fa-solid fa-arrow-up"></i></button>
+<button id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></button>
 
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script src="myscript.js"></script>
@@ -189,3 +318,4 @@
 </script>
 </body>
 </html>
+

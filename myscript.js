@@ -1,148 +1,123 @@
-// === Mobile Navigation Toggle ===
-function hamburg() {
-  document.querySelector(".dropdown").classList.add("open");
-}
-
-function cancel() {
-  document.querySelector(".dropdown").classList.remove("open");
-}
-
-// === Typing Animation ===
-const typingText = document.querySelector(".typing-text span");
-const roles = ["BCA Student", "Bot Developer", "Telegram Enthusiast",":)"];
-let index = 0;
-
-function typingEffect() {
-  typingText.textContent = roles[index];
-  index = (index + 1) % roles.length;
-}
-setInterval(typingEffect, 2250);
-
-// === Shuffle Text Animation ===
-document.querySelectorAll(".shuffle-text").forEach((el) => {
-  el.addEventListener("mouseenter", () => {
-    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    let iteration = 0;
-    const originalText = el.dataset.value;
-    const interval = setInterval(() => {
-      el.innerText = originalText
-        .split("")
-        .map((letter, i) => {
-          if (i < iteration) return originalText[i];
-          return letters[Math.floor(Math.random() * 26)];
-        })
-        .join("");
-      if (iteration >= originalText.length) clearInterval(interval);
-      iteration += 1 / 2;
-    }, 50);
-  });
-});
-
-// === Music Controls ===
-const tracks = [
-  new Audio("assests/music1.mp3"),
-  new Audio("assests/music2.mp3"),
-  new Audio("assests/music3.mp3")
-];
-
-let currentTrack = null;
-
-const playButtons = [
-  document.getElementById("playButton1"),
-  document.getElementById("playButton2"),
-  document.getElementById("playButton3")
-];
-
-const nowPlaying = document.querySelector(".now-playing");
-const equalizer = document.querySelector(".music-equalizer");
-
-function stopAllTracks() {
-  tracks.forEach((track) => {
-    track.pause();
-    track.currentTime = 0;
-  });
-  playButtons.forEach(btn => btn.innerHTML = '<i class="fa-solid fa-play"></i>  ' + (playButtons.indexOf(btn) + 1));
-  nowPlaying.textContent = "";
-  equalizer.style.opacity = 0.3;
-}
-
-playButtons.forEach((btn, i) => {
-  btn.addEventListener("click", () => {
-    if (currentTrack !== tracks[i]) {
-      stopAllTracks();
-      currentTrack = tracks[i];
-      currentTrack.play();
-      btn.innerHTML = '<i class="fa-solid fa-pause"></i>  ' + (i + 1);
-      nowPlaying.textContent = "Now Playing:  " + (i + 1);
-      equalizer.style.opacity = 1;
-    } else {
-      if (currentTrack.paused) {
-        currentTrack.play();
-        btn.innerHTML = '<i class="fa-solid fa-pause"></i>  ' + (i + 1);
-        equalizer.style.opacity = 1;
-      } else {
-        currentTrack.pause();
-        btn.innerHTML = '<i class="fa-solid fa-play"></i>  ' + (i + 1);
-        equalizer.style.opacity = 0.3;
-      }
-    }
-  });
-});
-
-// === Back to Top Button ===
-const backToTopBtn = document.getElementById("backToTop");
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 200) {
-    backToTopBtn.classList.add("show");
-  } else {
-    backToTopBtn.classList.remove("show");
+// Robust front-end behaviors: guarded selectors and DOMContentLoaded wrapper
+document.addEventListener("DOMContentLoaded", () => {
+  // Mobile Navigation Toggle
+  const dropdown = document.querySelector(".dropdown");
+  const hamburgBtn = document.querySelector(".hamburg");
+  const cancelBtn = document.querySelector(".cancel");
+  if (hamburgBtn && dropdown) {
+    hamburgBtn.addEventListener("click", () => dropdown.classList.add("open"));
   }
-});
+  if (cancelBtn && dropdown) {
+    cancelBtn.addEventListener("click", () => dropdown.classList.remove("open"));
+  }
 
-backToTopBtn.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
+  // Typing animation (safe)
+  const typingSpan = document.querySelector(".typing-text span");
+  const roles = ["BCA Student", "Bot Developer", "Telegram Enthusiast", ":)"].filter(Boolean);
+  if (typingSpan && roles.length) {
+    let index = 0;
+    const tick = () => {
+      typingSpan.textContent = roles[index];
+      index = (index + 1) % roles.length;
+    };
+    tick();
+    setInterval(tick, 2250);
+  }
 
-// === Download CV Button ===
-function downloadCV() {
-  const cvPath = "assests/GouthamJoshCV.pdf";
-  window.open(cvPath, "_blank");
-}
-
-// === Smooth Scroll for Navbar Links ===
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute("href")).scrollIntoView({ behavior: "smooth" });
-  });
-});
-
-// === Equalizer Animation ===
-const bars = document.querySelectorAll(".music-equalizer .bar");
-
-// Control the speed of the equalizer updates (in ms)
-const EQ_UPDATE_INTERVAL = 150; // 200ms per update (~5 times/sec)
-
-function animateEqualizer() {
-  if (currentTrack && !currentTrack.paused) {
-    bars.forEach(bar => {
-      // Random height based on "volume" approximation
-      const height = Math.random() * 25 + 5;
-      bar.style.height = height + "px";
+  // Shuffle text animation (logo/name) - guard dataset
+  document.querySelectorAll(".shuffle-text").forEach((el) => {
+    const original = el.dataset.value || el.textContent || "";
+    el.addEventListener("mouseenter", () => {
+      const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      let iteration = 0;
+      const interval = setInterval(() => {
+        el.textContent = original
+          .split("")
+          .map((letter, i) => (i < iteration ? original[i] : letters[Math.floor(Math.random() * 26)]))
+          .join("");
+        if (iteration >= original.length) clearInterval(interval);
+        iteration += 0.5;
+      }, 40);
     });
-  } else {
-    bars.forEach(bar => bar.style.height = "5px");
-  }
-  setTimeout(animateEqualizer, EQ_UPDATE_INTERVAL);
-}
+  });
 
-animateEqualizer();
-const navbar = document.querySelector("nav");
-window.addEventListener("scroll", () => {
-    if(window.scrollY > 50) {
-        navbar.classList.add("scrolled");
-    } else {
-        navbar.classList.remove("scrolled");
-    }
+  // Music controls - fixed asset paths and guarded elements
+  const audioFiles = ["assests/music1.mp3", "assests/music2.mp3", "assests/music3.mp3"];
+  const tracks = audioFiles.map(src => new Audio(src));
+  const playButtons = audioFiles.map((_, i) => document.getElementById(`playButton${i+1}`)).filter(Boolean);
+  const nowPlaying = document.querySelector(".now-playing");
+  const equalizer = document.querySelector(".music-equalizer");
+
+  let currentIndex = -1;
+
+  function stopAll() {
+    tracks.forEach(t => { t.pause(); t.currentTime = 0; });
+    playButtons.forEach((btn, idx) => btn.innerHTML = `<i class="fa-solid fa-play"></i>  ${idx+1}`);
+    if (nowPlaying) nowPlaying.textContent = "";
+    if (equalizer) equalizer.classList.remove("playing");
+    currentIndex = -1;
+  }
+
+  playButtons.forEach((btn, idx) => {
+    const track = tracks[idx];
+    btn.addEventListener("click", () => {
+      if (currentIndex !== idx) {
+        stopAll();
+        currentIndex = idx;
+        track.play().catch(err => { if (err.name !== 'AbortError') console.error(err); });
+        btn.innerHTML = `<i class="fa-solid fa-pause"></i>  ${idx+1}`;
+        if (nowPlaying) nowPlaying.textContent = `Now Playing: Track ${idx+1}`;
+        if (equalizer) equalizer.classList.add("playing");
+      } else {
+        if (track.paused) {
+          track.play().catch(err => { if (err.name !== 'AbortError') console.error(err); });
+          btn.innerHTML = `<i class="fa-solid fa-pause"></i>  ${idx+1}`;
+          if (equalizer) equalizer.classList.add("playing");
+        } else {
+          track.pause();
+          btn.innerHTML = `<i class="fa-solid fa-play"></i>  ${idx+1}`;
+          if (equalizer) equalizer.classList.remove("playing");
+        }
+      }
+    });
+    // ensure track stops when ended
+    track.addEventListener('ended', () => stopAll());
+  });
+
+  // Back to top button
+  const backToTop = document.getElementById('backToTop');
+  if (backToTop) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 200) backToTop.classList.add('show'); else backToTop.classList.remove('show');
+    });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
+
+  // Download CV - guard
+  window.downloadCV = function() {
+    const cvPath = 'assests/Goutham_Josh_CV.pdf';
+    window.open(cvPath, '_blank');
+  };
+
+  // Smooth scroll for anchors (only if target exists)
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = this.getAttribute('href');
+      if (!target || target === '#') return;
+      const el = document.querySelector(target);
+      if (!el) return;
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth' });
+      // close dropdown on mobile
+      if (dropdown) dropdown.classList.remove('open');
+    });
+  });
+
+  // Navbar scroll effect
+  const navbar = document.querySelector('nav');
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) navbar.classList.add('scrolled'); else navbar.classList.remove('scrolled');
+    });
+  }
 });
