@@ -6,118 +6,188 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="main.css">
-    <script src="myscript.js"></script>
-    <title>Portfolio</title>
+    <title>Goutham Josh Portfolio</title>
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
-            <div class="logo" data-aos="zoom-out-down" data-aos-duration="1500">
-                <span class="shuffle-text" data-value="OVERLOOKED" onclick="location.href='#home'">OVERLOOKED</span>
-            </div>
-            <div class="links">
-                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100"><a href="#home">Home</a></div>
-                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200"><a href="#about">About</a></div>
-                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300"><a href="#skills">Skills</a></div>
-                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400"><a href="#contact">Contact</a></div>
-            </div>
+
+<!-- Navigation -->
+<nav>
+    <div class="nav-container">
+        <div class="logo" data-aos="zoom-out-down" data-aos-duration="1500">
+            <span class="shuffle-text" data-value="VERSATILE">VERSATILE</span>
         </div>
-        <i class="fa-solid fa-bars hamburg" onclick="hamburg()"> </i>
-        <div class="dropdown">
+        <div class="links">
             <a href="#home">Home</a>
             <a href="#about">About</a>
             <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
             <a href="#contact">Contact</a>
-            <i class="fa-solid fa-xmark cancel" onclick="cancel()"> </i>
         </div>
-    </nav>
+    </div>
+    <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+    <div class="dropdown">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+    </div>
+</nav>
 
-    <section id="home">
-        <div class="main-container">
-            <div class="image" data-aos="zoom-in-right" data-aos-duration="3000">
-                <img src="assests/main.jpg" alt="">
+<!-- Home Section -->
+<section id="home">
+    <div class="main-container">
+        <div class="image" data-aos="zoom-in-right" data-aos-duration="3000">
+            <img src="assests/main.jpg" alt="Goutham Josh">
+        </div>
+        <div class="content">
+            <h1 data-aos="fade-right" data-aos-duration="1500" data-aos-delay="100">
+                Hey I'm <span class="shuffle-text" data-value="GOUTHAM JOSH">GOUTHAM JOSH</span>
+            </h1>
+            <h2 class="typing-text" data-aos="fade-left" data-aos-duration="1500" data-aos-delay="900">
+                I'm a <span></span>
+            </h2>
+            <p data-aos="flip-up" data-aos-duration="1500" data-aos-delay="1100">
+                A vibrant 19-year-old pursuing a Bachelor of Computer Applications with a deep passion for cybersecurity.
+            </p>
+
+            <div class="social-links" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1200">
+                <a href="https://linkedin.com/in/GouthamSER"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/GouthamSER"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-brands fa-medium"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
             </div>
-            <div class="content">
-                <h1 data-aos="fade-right" data-aos-duration="1500" data-aos-delay="100">Hey I'm <span class="shuffle-text" data-value="GOUTHAM JOSH" onclick="location.href='#home'">GOUTHAM JOSH</span></h1>
-                <h2 class="typing-text" data-aos="fade-left" data-aos-duration="1500" data-aos-delay="900">I'm a <span></span></h2>
-                <p data-aos="flip-up" data-aos-duration="1500" data-aos-delay="1100">a vibrant 19-year-old pursuing a Bachelor of Computer Applications with a deep-seated passion for cybersecurity. </p>
-                <div class="social-links">
-                    <a href="" data-aos="zoom-out" data-aos-duration="1500" data-aos-delay="1200"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="" data-aos="zoom-out" data-aos-duration="1500" data-aos-delay="1300"><i class="fa-brands fa-github"></i></a>
-                    <a href="" data-aos="zoom-out" data-aos-duration="1500" data-aos-delay="1400"><i class="fa-brands fa-medium"></i></a>
-                    <a href="" data-aos="zoom-out" data-aos-duration="1500" data-aos-delay="1500"><i class="fa-brands fa-facebook"></i></a>
+
+            <div class="btn" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1700">
+                <button onclick="downloadCV()">Download CV</button>
+            </div>
+
+            <!-- Music Buttons -->
+            <div class="music-buttons" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1800">
+                <button id="playButton1" class="play-button"><i class="fa-solid fa-play"></i>  1</button>
+                <button id="playButton2" class="play-button"><i class="fa-solid fa-play"></i>  2</button>
+                <button id="playButton3" class="play-button"><i class="fa-solid fa-play"></i>  3</button>
+            </div>
+
+            <!-- Equalizer -->
+            <div class="music-equalizer">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+                <div class="bar bar4"></div>
+                <div class="bar bar5"></div>
+            </div>
+            <div class="now-playing"></div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about">
+    <div class="main-container">
+        <div class="content">
+            <h1>About Me</h1>
+            <p>I am a passionate individual with a keen interest in bot development. Currently pursuing a Bachelor of Computer Applications[BCA], I am dedicated to learning and growing in hacking and development.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills">
+    <div class="main-container">
+        <div class="content">
+            <h1>Skills</h1>
+            <ul>
+                <li>C Programming</li>
+                <li>JAVA</li>
+                <li>SQL/DBMS</li>
+                <li>C++</li>
+                <li>Python</li>
+                <li>HTML & CSS</li>
+                <li>Data Structure[DS]</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects">
+    <div class="main-container">
+        <div class="content">
+            <h1>Projects</h1>
+            <div class="projects-container">
+                <div class="project-card">
+                    <h3>KuttuBotMD</h3>
+                    <p>Whatsapp MD BOT free to use with group automation</p>
+                    <a href="https://github.com/GouthamSER/KuttuBotMD" target="_blank">
+                        <i class="fa-brands fa-github"></i> View Repo
+                    </a>
                 </div>
-                <div class="btn" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1700">
-                    <button onclick="downloadCV()">Download CV</button>
+                <div class="project-card">
+                    <h3>2DB</h3>
+                    <p>Auto filter bot Pyrogram framework using 2DB MONGO.</p>
+                    <a href="https://github.com/GouthamSER/2DB" target="_blank">
+                        <i class="fa-brands fa-github"></i> View Repo
+                    </a>
                 </div>
-                <div>
-                    <button id="playButton" class="play-button">
-                        <i class="fa-solid fa-play"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <audio id="audioPlayer" autoplay>
-            <source src="assests/Diet.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-    </section>
-
-    <section id="about">
-        <div class="main-container">
-            <div class="content">
-                <h1 data-aos="fade-right" data-aos-duration="1500" data-aos-delay="100">About Me</h1>
-                <p data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">I am a passionate individual with a keen interest in cybersecurity and bug hunting. Currently pursuing a Bachelor of Computer Applications, I am dedicated to learning and growing in the field of ethical hacking and development.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="skills">
-        <div class="main-container">
-            <div class="content">
-                <h1 data-aos="fade-right" data-aos-duration="1500" data-aos-delay="100">Skills</h1>
-                <ul data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
-                    <li>C PRograming</li>
-                    <li>JAVA</li>
-                    <li>SQL</li>
-                    <li>C++</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="main-container">
-            <div class="content">
-                <h1 data-aos="fade-right" data-aos-duration="1500" data-aos-delay="100">Contact</h1>
-                <form class="contact-form" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200" action="mailto:gouthamjosh22@example.com" method="post" enctype="text/plain">
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message:</label>
-                        <textarea id="message" name="message" rows="4" required></textarea>
-                    </div>
-                    <button type="submit">Send</button>
-                </form>
-                <div class="social-links contact-social-links" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
-                    <a href="" data-aos="zoom-out" data-aos-duration="1500" data-aos-delay="1200"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="" data-aos="zoom-out" data-aos-duration="1500" data-aos-delay="1300"><i class="fa-brands fa-github"></i></a>
-                    <a href="" data-aos="zoom-out" data-aos-duration="1500" data-aos-delay="1400"><i class="fa-brands fa-medium"></i></a>
-                    <a href="" data-aos="zoom-out" data-aos-duration="1500" data-aos-delay="1500"><i class="fa-brands fa-facebook"></i></a>
+                <div class="project-card">
+                    <h3>KuttuBot</h3>
+                    <p>Advanced Telegram auto filter bot Pyrogram framework with multiple utilities.</p>
+                    <a href="https://github.com/GouthamSER/KuttuBot" target="_blank">
+                        <i class="fa-brands fa-github"></i> View Repo
+                    </a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        AOS.init({ offset: 0 });
-    </script>
+<!-- Contact Section -->
+<section id="contact">
+    <div class="main-container">
+        <div class="content">
+            <h1>Contact</h1>
+            <form class="contact-form" action="mailto:gouthamjosh22@gmail.com" method="post" enctype="text/plain">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- === Footer === -->
+<footer>
+    <div class="footer-container">
+        <p>&copy; 2025 Goutham Josh. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#home"><i class="fa-solid fa-arrow-up"></i> Back to Top</a>
+            <a href="https://linkedin.com/in/GouthamSER" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://github.com/GouthamSER" target="_blank"><i class="fa-brands fa-github"></i></a>
+            <a href="#"><i class="fa-brands fa-medium"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<!-- Back to Top -->
+<button id="backToTop"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="myscript.js"></script>
+<script>
+    AOS.init({ offset: 0 });
+</script>
 </body>
 </html>
