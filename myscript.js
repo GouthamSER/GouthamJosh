@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Download CV - guard
   window.downloadCV = function() {
-    const cvPath = 'assests/Goutham_Josh_CV.pdf';
+    const cvPath = 'assets/Goutham_Josh_CV.pdf';
     window.open(cvPath, '_blank');
   };
 
