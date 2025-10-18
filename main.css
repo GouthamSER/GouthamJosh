@@ -3,6 +3,9 @@
     --card:#0f1720;
     --muted:#9aa4b2;
     --accent:#60a5fa;
+    --glass-border: rgba(255,255,255,0.06);
+    --glass-highlight: rgba(255,255,255,0.08);
+    --glass-blur: 8px;
     --glass: rgba(255,255,255,0.04);
     --radius:12px;
     --max-width:1100px;
@@ -40,10 +43,27 @@ nav{position:fixed;top:12px;left:0;right:0;z-index:60}
     align-items:center;
     gap:var(--gap);
     padding:6px 18px;
-    background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent);
-    border-radius:14px;
-    backdrop-filter: blur(6px);
-    box-shadow: 0 6px 20px rgba(2,6,23,0.6);
+    /* stronger frosted glass */
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.012));
+    border-radius:16px;
+    backdrop-filter: blur(calc(var(--glass-blur) + 2px)) saturate(140%);
+    -webkit-backdrop-filter: blur(calc(var(--glass-blur) + 2px)) saturate(140%);
+    box-shadow: 0 10px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    position:relative;overflow:hidden;
+}
+.nav-container::before{
+    /* subtle moving sheen across the nav */
+    content:'';position:absolute;left:-40%;top:-10%;width:40%;height:120%;
+    background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.08) 45%, rgba(255,255,255,0.02) 55%, transparent 100%);
+    transform:skewX(-18deg) translateX(0);
+    opacity:0.55;
+    transition:transform 6s linear, opacity 420ms ease;
+    pointer-events:none;
+}
+@keyframes nav-sheen{from{transform:translateX(-120%)}to{transform:translateX(220%)}}
+@media (prefers-reduced-motion: no-preference){
+    .nav-container::before{animation:nav-sheen 8s linear infinite}
 }
 .logo{
     position:relative;
@@ -51,6 +71,11 @@ nav{position:fixed;top:12px;left:0;right:0;z-index:60}
     letter-spacing:2px;
     color:var(--accent);
     transition: color 220ms ease, transform 220ms ease;
+}
+
+.logo::before{
+    /* subtle inner highlight */
+    content:'';position:absolute;left:0;right:0;top:4px;height:40%;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);pointer-events:none;border-radius:10px;opacity:0.6;mix-blend-mode:overlay
 }
 
 .logo::after{
@@ -79,20 +104,27 @@ nav{position:fixed;top:12px;left:0;right:0;z-index:60}
 
 /* Brand button inside logo to make it keyboard-focusable but visually plain */
 .brand-btn{
-    background:transparent;border:0;padding:0;margin:0;color:inherit;font-weight:700;font-size:1rem;cursor:pointer;
+    background:transparent;border:0;padding:0;margin:0;color:inherit;font-weight:700;font-size:1rem;cursor:pointer;position:relative;overflow:hidden;
 }
 
 .brand-btn:focus{outline:2px solid rgba(96,165,250,0.22);outline-offset:4px;border-radius:6px}
 .links{display:flex;gap:14px}
 .links a{color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:8px}
+.links a{color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:8px;position:relative;overflow:hidden}
+.links a::after{
+    content:'';position:absolute;left:-60%;top:-20%;width:60%;height:140%;background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);transform:skewX(-18deg) translateX(0);opacity:0.6;pointer-events:none;transition:transform 420ms ease,opacity 250ms ease
+}
 .links a:hover{color:#fff;background:var(--glass)}
+.links a:hover::after{transform:translateX(220%)}
 
 /* mobile hamburger */
 .hamburg{
     display:none;
     background:transparent;border:0;color:var(--muted);
-    font-size:20px;padding:8px;border-radius:8px;
+    font-size:20px;padding:8px;border-radius:8px;position:relative;overflow:hidden;
 }
+.hamburg::after{content:'';position:absolute;left:-60%;top:-30%;width:60%;height:160%;background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);transform:skewX(-18deg) translateX(0);opacity:0.6;pointer-events:none;transition:transform 420ms ease}
+.hamburg:hover::after{transform:translateX(220%)}
 .dropdown{
     display:none;
     position:fixed;
@@ -107,7 +139,7 @@ nav{position:fixed;top:12px;left:0;right:0;z-index:60}
 .dropdown.open{display:flex;flex-direction:column;gap:8px}
 .dropdown a{color:var(--muted);text-decoration:none;padding:10px;border-radius:8px}
 .dropdown a:hover{background:var(--glass);color:#fff}
-.cancel{background:transparent;border:0;color:var(--muted);align-self:flex-end}
+.cancel{background:transparent;border:0;color:var(--muted);align-self:flex-end;position:relative;overflow:hidden}
 
 /* hero / home */
 #home .main-container{display:flex;gap:32px;align-items:center}
@@ -119,9 +151,47 @@ nav{position:fixed;top:12px;left:0;right:0;z-index:60}
 
 /* buttons / social */
 .btn{
-    display:inline-block;background:linear-gradient(90deg,var(--accent),#3b82f6);
-    color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;border:0;
-    box-shadow:0 6px 18px rgba(96,165,250,0.12);cursor:pointer;margin-right:8px
+    display:inline-block;
+    background:linear-gradient(90deg,var(--accent),#3b82f6);
+    color:#fff;
+    padding:10px 14px;
+    border-radius:10px;
+    text-decoration:none;
+    border:0;
+    box-shadow:0 6px 18px rgba(96,165,250,0.12);
+    cursor:pointer;
+    margin-right:8px;
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.04);
+    backdrop-filter: blur(6px) saturate(120%);
+}
+.btn::after{
+    content:'';
+    position:absolute;left:-60%;top:-30%;width:60%;height:160%;
+    background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.12) 50%, transparent 100%);
+    transform:skewX(-20deg) translateX(0);
+    opacity:0.6;
+    pointer-events:none;
+    transition:transform 550ms ease, opacity 350ms ease;
+}
+.btn:hover::after{transform:translateX(220%)}
+
+/* sheen for brand, hamburger, cancel and play controls */
+.brand-btn::after,.play-button::after,.hamburg::after,.cancel::after{
+    content:'';
+    position:absolute;left:-60%;top:-30%;width:60%;height:160%;
+    background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.12) 50%, transparent 100%);
+    transform:skewX(-20deg) translateX(0);
+    opacity:0.6;
+    pointer-events:none;
+    transition:transform 550ms ease, opacity 350ms ease;
+}
+.brand-btn:hover::after,.play-button:hover::after,.hamburg:hover::after,.cancel:hover::after{transform:translateX(220%)}
+
+@media (prefers-reduced-motion: reduce){
+    .nav-container::before{animation:none;transition:none;opacity:0}
+    .btn::after, .brand-btn::after, .play-button::after, .hamburg::after, .cancel::after{transition:none;opacity:0}
 }
 .btn.outline{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
 .btn.muted{opacity:.6;pointer-events:none}
@@ -130,7 +200,7 @@ nav{position:fixed;top:12px;left:0;right:0;z-index:60}
 
 /* music controls & equalizer */
 .music-buttons{margin-top:18px;display:flex;gap:8px;flex-wrap:wrap}
-.play-button{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.03);padding:8px 12px;border-radius:10px;color:var(--muted);cursor:pointer}
+.play-button{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.03);padding:8px 12px;border-radius:10px;color:var(--muted);cursor:pointer;position:relative;overflow:hidden}
 .play-button.playing{background:linear-gradient(90deg,#064e3b,#065f46);color:#fff}
 .music-equalizer{display:flex;gap:6px;margin-top:14px;height:36px;align-items:end;width:120px}
 .music-equalizer .bar{
@@ -172,10 +242,40 @@ h1{font-size:24px;margin-bottom:8px}
 
 /* Skill pills (compact) */
 .skill-pills{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-.skill-pill{background:linear-gradient(90deg,#0ea5e9,#6366f1);color:#fff;border:0;padding:8px 12px;border-radius:999px;cursor:default;font-weight:600}
-.skill-pill:hover{transform:translateY(-3px)}
+.skill-pill{
+    /* liquid-glass base */
+    background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 8px 12px;
+    border-radius: 999px;
+    cursor:default;
+    font-weight:600;
+    position:relative;
+    overflow:hidden;
+    backdrop-filter: blur(6px) saturate(120%);
+    box-shadow: 0 6px 18px rgba(2,6,23,0.6);
+    transition: transform 220ms ease, box-shadow 220ms ease;
+}
+.skill-pill:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(2,6,23,0.7)}
 .skill-pill:focus{outline:3px solid rgba(99,102,241,0.18);outline-offset:3px}
 .skill-pill[type="button"]{cursor:default}
+
+/* sheen pseudo-element for skill pills */
+.skill-pill::after{
+    content:'';
+    position:absolute;left:-60%;top:-20%;width:60%;height:140%;
+    background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.12) 50%, transparent 100%);
+    transform:skewX(-20deg) translateX(0);
+    opacity:0.6;
+    pointer-events:none;
+    transition:transform 550ms ease, opacity 350ms ease;
+}
+.skill-pill:hover::after{transform:translateX(220%)}
+
+@media (prefers-reduced-motion: reduce){
+    .skill-pill::after{transition:none;opacity:0}
+}
 
 .about-highlights li{
     display:flex;
@@ -223,6 +323,15 @@ button[type=submit]{margin-top:6px}
 /* footer & back to top */
 footer{position:relative;margin-top:40px}
 .footer-container{max-width:var(--max-width);margin:30px auto;padding:18px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+/* Footer layout improvements */
+.footer-left{display:flex;flex-direction:column;gap:6px}
+.footer-left p{margin:0;color:var(--muted);font-size:14px}
+.footer-contact a{color:var(--accent);text-decoration:none}
+.footer-contact a:hover{text-decoration:underline}
+.btn-small{padding:6px 8px;border-radius:8px;font-size:13px;margin-left:8px}
+.footer-credit{color:var(--muted);font-size:13px;margin-top:6px}
+.footer-links a{color:var(--muted);text-decoration:none;margin-left:10px}
+.footer-links a:hover{color:#fff}
 /* Back to top button: hidden by default, shown with .show */
 #backToTop{
     position:fixed;
@@ -273,4 +382,6 @@ a:focus,button:focus{outline:2px solid rgba(96,165,250,0.22);outline-offset:3px}
     .contact-quick{justify-content:center}
     .contact-quick .btn{flex:1 1 120px;justify-content:center}
     .skill-pills{justify-content:center}
+    .footer-container{flex-direction:column;gap:10px;align-items:center}
+    .footer-links a{margin-left:6px}
 }

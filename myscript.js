@@ -120,4 +120,51 @@ document.addEventListener("DOMContentLoaded", () => {
       if (window.scrollY > 50) navbar.classList.add('scrolled'); else navbar.classList.remove('scrolled');
     });
   }
+
+  // Footer: copy email to clipboard with feedback
+  const copyBtn = document.getElementById('copyEmail');
+  const footerEmail = document.getElementById('footerEmail');
+  if (copyBtn && footerEmail && navigator.clipboard) {
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(footerEmail.textContent.trim());
+        const original = copyBtn.textContent;
+        copyBtn.textContent = 'Copied!';
+        copyBtn.disabled = true;
+        setTimeout(() => { copyBtn.textContent = original; copyBtn.disabled = false; }, 1800);
+      } catch (err) {
+        console.error('Copy failed', err);
+      }
+    });
+  }
+
+  // Contact form: build mailto and open default mail client
+  const contactForm = document.querySelector('.contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = (this.querySelector('[name="name"]') || {}).value || '';
+      const email = (this.querySelector('[name="email"]') || {}).value || '';
+      const message = (this.querySelector('[name="message"]') || {}).value || '';
+
+      // basic validation
+      if (!name.trim() || !email.trim() || !message.trim()) {
+        alert('Please fill in name, email and message before sending.');
+        return;
+      }
+
+      const subject = encodeURIComponent('Portfolio Contact from ' + name.trim());
+      const bodyLines = [
+        'Name: ' + name.trim(),
+        'Email: ' + email.trim(),
+        '',
+        message.trim()
+      ];
+      const body = encodeURIComponent(bodyLines.join('\n'));
+      const mailto = `mailto:gouthamjosh22@gmail.com?subject=${subject}&body=${body}`;
+
+      // open mail client
+      window.location.href = mailto;
+    });
+  }
 });
