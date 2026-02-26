@@ -920,27 +920,166 @@ a:focus-visible, button:focus-visible {
 }
 
 /* =============================================
-   RESPONSIVE
+   RESPONSIVE — TABLET (≤900px)
    ============================================= */
 @media (max-width: 900px) {
+  /* Nav */
   .nav-links { display: none; }
   .menu-btn { display: flex; }
+  .nav-inner { padding: 16px 20px; }
 
-  .about-grid { grid-template-columns: 1fr; }
-  .about-photo-col { max-width: 320px; margin: 0 auto; }
-
-  .contact-grid { grid-template-columns: 1fr; }
-
+  /* Hero */
   .hero-inner { padding: 0 20px; }
+  #home { padding-top: 80px; align-items: flex-start; padding-bottom: 60px; }
+
+  /* About */
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .about-photo-col { max-width: 340px; margin: 0 auto; width: 100%; }
+
+  /* Contact */
+  .contact-grid { grid-template-columns: 1fr; }
+  .contact-aside { order: -1; }
+  .quick-contact { flex-direction: row; }
+  .btn-tg, .btn-wa { flex: 1; }
 }
 
+/* =============================================
+   RESPONSIVE — MOBILE (≤600px)
+   ============================================= */
 @media (max-width: 600px) {
-  section { padding: 72px 16px; }
-  .name-line { letter-spacing: -1px; }
-  .hero-actions { flex-direction: column; }
-  .hero-actions .btn-primary, .hero-actions .btn-ghost { justify-content: center; }
-  .projects-grid { grid-template-columns: 1fr; }
-  .stats-card { flex-wrap: wrap; }
-  .footer-inner { flex-direction: column; text-align: center; }
-  .music-terminal { max-width: 100%; }
+  :root { --card-radius: 6px; }
+
+  /* Sections */
+  section { padding: 64px 16px; }
+  .section-inner { padding: 0; }
+
+  /* Section labels & titles */
+  .section-label { font-size: 0.65rem; letter-spacing: 3px; }
+  .section-title { font-size: 1.85rem; }
+  .section-sub { font-size: 0.9rem; margin-bottom: 32px; }
+
+  /* --- NAV --- */
+  .nav-inner { padding: 14px 16px; }
+  .logo { font-size: 0.95rem; }
+  .mobile-menu { padding: 12px 16px 20px; }
+  .mobile-menu a { font-size: 0.8rem; padding: 11px 0; }
+
+  /* --- HERO --- */
+  #home {
+    min-height: 100svh;
+    padding: 88px 16px 60px;
+    align-items: flex-start;
+  }
+  .hero-tag { font-size: 0.62rem; letter-spacing: 2px; padding: 5px 10px; }
+  .name-line {
+    font-size: clamp(2.8rem, 14vw, 4.5rem);
+    letter-spacing: -1px;
+  }
+  .accent-stroke { -webkit-text-stroke: 1.5px var(--cyan); }
+  .hero-role { font-size: 0.88rem; margin-bottom: 14px; flex-wrap: wrap; }
+  .hero-bio { font-size: 0.92rem; margin-bottom: 24px; max-width: 100%; }
+
+  /* Buttons — stack vertically */
+  .hero-actions {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .hero-actions .btn-primary,
+  .hero-actions .btn-ghost {
+    justify-content: center;
+    width: 100%;
+    padding: 13px 20px;
+    font-size: 0.8rem;
+  }
+
+  /* Social icons */
+  .social-row { gap: 18px; margin-bottom: 28px; }
+  .social-row a { font-size: 1.3rem; }
+
+  /* Music terminal */
+  .music-terminal { max-width: 100%; font-size: 0.75rem; }
+  .terminal-header { padding: 8px 12px; }
+  .terminal-body { padding: 12px; }
+  .track-btns { flex-wrap: wrap; gap: 6px; }
+  .track-btn { flex: 1 1 calc(33% - 4px); text-align: center; font-size: 0.68rem; padding: 8px 6px; }
+  .now-playing { font-size: 0.68rem; }
+
+  /* Scroll hint — hide on small screens */
+  .scroll-hint { display: none; }
+
+  /* --- ABOUT --- */
+  .about-photo-col { max-width: 100%; }
+  .about-img { border-radius: 6px; }
+  .stats-card {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr 1px 1fr;
+    align-items: center;
+  }
+  .stat { padding: 12px 8px; }
+  .stat-num { font-size: 1.2rem; }
+  .stat-label { font-size: 0.62rem; }
+  .about-p { font-size: 0.92rem; }
+  .about-list li { font-size: 0.88rem; gap: 10px; padding: 9px 0; }
+  .about-btns {
+    flex-direction: column; gap: 10px;
+  }
+  .about-btns .btn-primary,
+  .about-btns .btn-ghost { justify-content: center; width: 100%; }
+
+  /* --- SKILLS --- */
+  .skills-container { grid-template-columns: 1fr; gap: 14px; }
+  .skill-category { padding: 18px; }
+  .skill-pill { font-size: 0.72rem; padding: 6px 11px; }
+
+  /* --- PROJECTS --- */
+  .projects-grid { grid-template-columns: 1fr; gap: 14px; }
+  .card-img { height: 140px; }
+  .card-body { padding: 14px; }
+  .card-title { font-size: 1.1rem; }
+  .card-desc { font-size: 0.85rem; }
+  .card-tech span { font-size: 0.65rem; }
+  .card-links a { font-size: 1.1rem; }
+  .projects-footer { margin-top: 8px; }
+  .projects-footer .btn-ghost { width: 100%; justify-content: center; }
+
+  /* --- CONTACT --- */
+  .contact-form { padding: 20px 16px; }
+  input, textarea { font-size: 0.9rem; padding: 11px 12px; }
+  label { font-size: 0.68rem; }
+  .btn-primary.full-w { padding: 13px; font-size: 0.8rem; }
+  .contact-info-card { padding: 16px; }
+  .info-item { gap: 10px; padding: 10px 0; }
+  .info-val { font-size: 0.83rem; }
+  .info-label { font-size: 0.62rem; }
+  .quick-contact { flex-direction: column; gap: 8px; }
+  .btn-tg, .btn-wa { padding: 12px; font-size: 0.78rem; }
+
+  /* --- FOOTER --- */
+  footer { padding: 20px 16px; }
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+  .footer-left p { font-size: 0.7rem; }
+  .footer-right { gap: 16px; justify-content: center; }
+  .footer-right a { font-size: 1.2rem; }
+
+  /* --- BACK TO TOP --- */
+  #backToTop { right: 14px; bottom: 16px; width: 36px; height: 36px; font-size: 0.85rem; }
+}
+
+/* =============================================
+   RESPONSIVE — SMALL PHONES (≤380px)
+   ============================================= */
+@media (max-width: 380px) {
+  .name-line { font-size: 2.5rem; }
+  .hero-tag { font-size: 0.58rem; letter-spacing: 1.5px; }
+  .track-btn { font-size: 0.62rem; padding: 7px 4px; }
+  .stat-num { font-size: 1rem; }
+  .section-title { font-size: 1.6rem; }
 }
