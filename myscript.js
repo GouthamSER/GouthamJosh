@@ -1,170 +1,285 @@
-// Robust front-end behaviors: guarded selectors and DOMContentLoaded wrapper
-document.addEventListener("DOMContentLoaded", () => {
-  // Mobile Navigation Toggle
-  const dropdown = document.querySelector(".dropdown");
-  const hamburgBtn = document.querySelector(".hamburg");
-  const cancelBtn = document.querySelector(".cancel");
-  if (hamburgBtn && dropdown) {
-    hamburgBtn.addEventListener("click", () => dropdown.classList.add("open"));
-  }
-  if (cancelBtn && dropdown) {
-    cancelBtn.addEventListener("click", () => dropdown.classList.remove("open"));
+/* =============================================
+   GOUTHAM JOSH — PORTFOLIO 2026
+   myscript.js
+   ============================================= */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ---- AUTO AGE CALCULATION ----
+     Birthday: 19 April 2006
+     Updates automatically on load and every year */
+  const BIRTHDAY = new Date('2006-04-19');
+
+  function calcAge(birthday) {
+    const today = new Date();
+    let age = today.getFullYear() - birthday.getFullYear();
+    const monthDiff = today.getMonth() - birthday.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthday.getDate())) {
+      age--;
+    }
+    return age;
   }
 
-  // Typing animation (safe)
-  const typingSpan = document.querySelector(".typing-text span");
-  const roles = ["BCA Student", "Bot Developer", "Telegram Enthusiast", ":)"].filter(Boolean);
-  if (typingSpan && roles.length) {
-    let index = 0;
-    const tick = () => {
-      typingSpan.textContent = roles[index];
-      index = (index + 1) % roles.length;
-    };
-    tick();
-    setInterval(tick, 2250);
-  }
+  const currentAge = calcAge(BIRTHDAY);
 
-  // Shuffle text animation (logo/name) - guard dataset
-  document.querySelectorAll(".shuffle-text").forEach((el) => {
-    const original = el.dataset.value || el.textContent || "";
-    el.addEventListener("mouseenter", () => {
-      const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-      let iteration = 0;
-      const interval = setInterval(() => {
-        el.textContent = original
-          .split("")
-          .map((letter, i) => (i < iteration ? original[i] : letters[Math.floor(Math.random() * 26)]))
-          .join("");
-        if (iteration >= original.length) clearInterval(interval);
-        iteration += 0.5;
-      }, 40);
-    });
+  // Update all age display elements
+  ['ageDisplay', 'ageStatDisplay'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = currentAge;
   });
 
-  // Music controls - fixed asset paths and guarded elements
-  const audioFiles = ["assests/music1.mp3", "assests/music2.mp3", "assests/music3.mp3"];
-  const tracks = audioFiles.map(src => new Audio(src));
-  const playButtons = audioFiles.map((_, i) => document.getElementById(`playButton${i+1}`)).filter(Boolean);
-  const nowPlaying = document.querySelector(".now-playing");
-  const equalizer = document.querySelector(".music-equalizer");
+  // Footer year
+  const footerYear = document.getElementById('footerYear');
+  if (footerYear) footerYear.textContent = new Date().getFullYear();
 
-  let currentIndex = -1;
 
-  function stopAll() {
-    tracks.forEach(t => { t.pause(); t.currentTime = 0; });
-    playButtons.forEach((btn, idx) => btn.innerHTML = `<i class="fa-solid fa-play"></i>  ${idx+1}`);
-    if (nowPlaying) nowPlaying.textContent = "";
-    if (equalizer) equalizer.classList.remove("playing");
-    currentIndex = -1;
+  /* ---- CURSOR GLOW ---- */
+  const glow = document.getElementById('cursorGlow');
+  if (glow) {
+    let mouseX = 0, mouseY = 0;
+    let glowX = 0, glowY = 0;
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX; mouseY = e.clientY;
+    });
+    function animateGlow() {
+      glowX += (mouseX - glowX) * 0.08;
+      glowY += (mouseY - glowY) * 0.08;
+      glow.style.left = glowX + 'px';
+      glow.style.top = glowY + 'px';
+      requestAnimationFrame(animateGlow);
+    }
+    animateGlow();
   }
 
-  playButtons.forEach((btn, idx) => {
-    const track = tracks[idx];
-    btn.addEventListener("click", () => {
-      if (currentIndex !== idx) {
-        stopAll();
-        currentIndex = idx;
-        track.play().catch(err => { if (err.name !== 'AbortError') console.error(err); });
-        btn.innerHTML = `<i class="fa-solid fa-pause"></i>  ${idx+1}`;
-        if (nowPlaying) nowPlaying.textContent = `Now Playing: Track ${idx+1}`;
-        if (equalizer) equalizer.classList.add("playing");
-      } else {
-        if (track.paused) {
-          track.play().catch(err => { if (err.name !== 'AbortError') console.error(err); });
-          btn.innerHTML = `<i class="fa-solid fa-pause"></i>  ${idx+1}`;
-          if (equalizer) equalizer.classList.add("playing");
-        } else {
-          track.pause();
-          btn.innerHTML = `<i class="fa-solid fa-play"></i>  ${idx+1}`;
-          if (equalizer) equalizer.classList.remove("playing");
-        }
-      }
-    });
-    // ensure track stops when ended
-    track.addEventListener('ended', () => stopAll());
-  });
 
-  // Back to top button
-  const backToTop = document.getElementById('backToTop');
-  if (backToTop) {
+  /* ---- NAVBAR SCROLL ---- */
+  const navbar = document.getElementById('navbar');
+  if (navbar) {
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 200) backToTop.classList.add('show'); else backToTop.classList.remove('show');
-    });
-    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
   }
 
-  // Download CV - guard
-  window.downloadCV = function() {
-    const cvPath = 'assets/Goutham_Josh_CV.pdf';
-    window.open(cvPath, '_blank');
-  };
 
-  // Smooth scroll for anchors (only if target exists)
+  /* ---- MOBILE MENU ---- */
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      menuBtn.classList.toggle('open', isOpen);
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+      mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+    });
+    // Close on link click
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        menuBtn.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+      });
+    });
+  }
+
+
+  /* ---- SMOOTH SCROLL ---- */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
       const target = this.getAttribute('href');
       if (!target || target === '#') return;
       const el = document.querySelector(target);
       if (!el) return;
       e.preventDefault();
-      el.scrollIntoView({ behavior: 'smooth' });
-      // close dropdown on mobile
-      if (dropdown) dropdown.classList.remove('open');
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
 
-  // Navbar scroll effect
-  const navbar = document.querySelector('nav');
-  if (navbar) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) navbar.classList.add('scrolled'); else navbar.classList.remove('scrolled');
-    });
+
+  /* ---- TYPING ANIMATION ---- */
+  const typingEl = document.getElementById('typingTarget');
+  const roles = ['BCA Student', 'Bot Developer', 'Cybersecurity Enthusiast', 'Automation Architect', ':)'];
+  if (typingEl && roles.length) {
+    let roleIdx = 0;
+    let charIdx = 0;
+    let isDeleting = false;
+    let pause = false;
+
+    function type() {
+      const current = roles[roleIdx];
+      if (pause) {
+        setTimeout(type, 1200);
+        pause = false;
+        return;
+      }
+      if (!isDeleting) {
+        typingEl.textContent = current.slice(0, charIdx + 1);
+        charIdx++;
+        if (charIdx === current.length) {
+          isDeleting = true; pause = true;
+          setTimeout(type, 80);
+          return;
+        }
+      } else {
+        typingEl.textContent = current.slice(0, charIdx - 1);
+        charIdx--;
+        if (charIdx === 0) {
+          isDeleting = false;
+          roleIdx = (roleIdx + 1) % roles.length;
+        }
+      }
+      setTimeout(type, isDeleting ? 55 : 90);
+    }
+    type();
   }
 
-  // Footer: copy email to clipboard with feedback
-  const copyBtn = document.getElementById('copyEmail');
-  const footerEmail = document.getElementById('footerEmail');
-  if (copyBtn && footerEmail && navigator.clipboard) {
-    copyBtn.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(footerEmail.textContent.trim());
-        const original = copyBtn.textContent;
-        copyBtn.textContent = 'Copied!';
-        copyBtn.disabled = true;
-        setTimeout(() => { copyBtn.textContent = original; copyBtn.disabled = false; }, 1800);
-      } catch (err) {
-        console.error('Copy failed', err);
+
+  /* ---- SCROLL REVEAL ---- */
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const delay = el.dataset.revealDelay || (i * 60);
+          setTimeout(() => el.classList.add('revealed'), Number(delay));
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(el => observer.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('revealed'));
+  }
+
+
+  /* ---- MUSIC PLAYER ---- */
+  const audioFiles = ['assests/music1.mp3', 'assests/music2.mp3', 'assests/music3.mp3'];
+  const tracks = audioFiles.map(src => {
+    const a = new Audio(src);
+    a.preload = 'none';
+    return a;
+  });
+  const trackBtns = [
+    document.getElementById('pb1'),
+    document.getElementById('pb2'),
+    document.getElementById('pb3')
+  ].filter(Boolean);
+  const nowPlayingEl = document.getElementById('nowPlaying');
+  const eqEl = document.getElementById('equalizer');
+
+  let current = -1;
+
+  function stopAll() {
+    tracks.forEach(t => { t.pause(); t.currentTime = 0; });
+    trackBtns.forEach((btn, i) => {
+      if (btn) { btn.textContent = `▶ track_0${i + 1}`; btn.classList.remove('playing'); }
+    });
+    if (nowPlayingEl) nowPlayingEl.textContent = '// no track playing';
+    if (eqEl) eqEl.classList.remove('playing');
+    current = -1;
+  }
+
+  trackBtns.forEach((btn, idx) => {
+    if (!btn) return;
+    const track = tracks[idx];
+    btn.addEventListener('click', () => {
+      if (current !== idx) {
+        stopAll();
+        current = idx;
+        track.play().catch(err => { if (err.name !== 'AbortError') console.warn('Audio play error:', err); });
+        btn.textContent = `⏸ track_0${idx + 1}`;
+        btn.classList.add('playing');
+        if (nowPlayingEl) nowPlayingEl.textContent = `// playing: track_0${idx + 1}`;
+        if (eqEl) eqEl.classList.add('playing');
+      } else {
+        if (track.paused) {
+          track.play().catch(err => { if (err.name !== 'AbortError') console.warn(err); });
+          btn.textContent = `⏸ track_0${idx + 1}`;
+          btn.classList.add('playing');
+          if (eqEl) eqEl.classList.add('playing');
+        } else {
+          track.pause();
+          btn.textContent = `▶ track_0${idx + 1}`;
+          btn.classList.remove('playing');
+          if (eqEl) eqEl.classList.remove('playing');
+        }
       }
     });
-  }
+    track.addEventListener('ended', () => stopAll());
+  });
 
-  // Contact form: build mailto and open default mail client
-  const contactForm = document.querySelector('.contact-form');
+
+  /* ---- CONTACT FORM ---- */
+  const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      const name = (this.querySelector('[name="name"]') || {}).value || '';
-      const email = (this.querySelector('[name="email"]') || {}).value || '';
-      const message = (this.querySelector('[name="message"]') || {}).value || '';
-
-      // basic validation
-      if (!name.trim() || !email.trim() || !message.trim()) {
-        alert('Please fill in name, email and message before sending.');
+      const name    = (this.querySelector('[name="name"]')?.value || '').trim();
+      const email   = (this.querySelector('[name="email"]')?.value || '').trim();
+      const message = (this.querySelector('[name="message"]')?.value || '').trim();
+      if (!name || !email || !message) {
+        alert('Please fill in all fields before sending.');
         return;
       }
-
-      const subject = encodeURIComponent('Portfolio Contact from ' + name.trim());
-      const bodyLines = [
-        'Name: ' + name.trim(),
-        'Email: ' + email.trim(),
-        '',
-        message.trim()
-      ];
-      const body = encodeURIComponent(bodyLines.join('\n'));
-      const mailto = `mailto:gouthamjosh22@gmail.com?subject=${subject}&body=${body}`;
-
-      // open mail client
-      window.location.href = mailto;
+      const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+      window.location.href = `mailto:gouthamjosh22@gmail.com?subject=${subject}&body=${body}`;
     });
   }
+
+
+  /* ---- BACK TO TOP ---- */
+  const backToTop = document.getElementById('backToTop');
+  if (backToTop) {
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('show', window.scrollY > 300);
+    }, { passive: true });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
+
+
+  /* ---- GLITCH / SHUFFLE TEXT LOGO ---- */
+  const logoText = document.getElementById('logoText');
+  if (logoText) {
+    const original = 'GJ';
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    logoText.addEventListener('mouseenter', () => {
+      let iter = 0;
+      const interval = setInterval(() => {
+        logoText.textContent = original.split('').map((c, i) =>
+          i < iter ? original[i] : chars[Math.floor(Math.random() * chars.length)]
+        ).join('');
+        if (iter >= original.length) clearInterval(interval);
+        iter += 0.5;
+      }, 60);
+    });
+  }
+
+
+  /* ---- PROJECT CARD STAGGER ---- */
+  document.querySelectorAll('.project-card[data-reveal]').forEach((card, i) => {
+    card.dataset.revealDelay = i * 100;
+  });
+
+
+  /* ---- ACTIVE NAV HIGHLIGHT on scroll ---- */
+  const sections = document.querySelectorAll('section[id]');
+  const navAs = document.querySelectorAll('.nav-links a');
+  if (sections.length && navAs.length) {
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navAs.forEach(a => {
+            a.style.color = '';
+          });
+          const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+          if (active) active.style.color = 'var(--cyan)';
+        }
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(s => sectionObserver.observe(s));
+  }
+
 });
