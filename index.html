@@ -1,381 +1,368 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goutham Josh</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="main.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goutham Josh — Bot Developer & Automation Builder</title>
+  <meta name="description" content="Goutham Josh — BCA student from Kerala building Telegram & WhatsApp bots, Android apps and automation tools. Open to internships and collaborations.">
+  <meta name="theme-color" content="#0b0c10">
+  <meta property="og:title" content="Goutham Josh — Bot Developer & Automation Builder">
+  <meta property="og:description" content="Telegram & WhatsApp bots, Android apps and automation tools. Portfolio 2026.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/main.jpg">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230b0c10'/%3E%3Ctext x='32' y='43' font-family='monospace' font-size='30' font-weight='700' text-anchor='middle' fill='%23c8ff3d'%3EGJ%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="main.css">
+  <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('gj-theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 </head>
 <body>
-    <!-- Scanline overlay -->
-    <div class="scanlines" aria-hidden="true"></div>
-    <!-- Noise grain -->
-    <div class="grain" aria-hidden="true"></div>
-    <!-- Cursor glow -->
-    <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
 
-    <!-- === NAV === -->
-    <nav id="navbar">
-        <div class="nav-inner">
-            <a href="#home" class="logo" aria-label="Home">
-                <span class="logo-bracket">[</span>
-                <span class="logo-text" id="logoText">GJ</span>
-                <span class="logo-bracket">]</span>
-            </a>
-            <ul class="nav-links" role="menubar">
-                <li><a href="#home" role="menuitem"><span class="nav-num">01.</span>Home</a></li>
-                <li><a href="#about" role="menuitem"><span class="nav-num">02.</span>About</a></li>
-                <li><a href="#skills" role="menuitem"><span class="nav-num">03.</span>Skills</a></li>
-                <li><a href="#projects" role="menuitem"><span class="nav-num">04.</span>Projects</a></li>
-                <li><a href="#contact" role="menuitem"><span class="nav-num">05.</span>Contact</a></li>
-            </ul>
-            <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-        <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-            <a href="#home">01. Home</a>
-            <a href="#about">02. About</a>
-            <a href="#skills">03. Skills</a>
-            <a href="#projects">04. Projects</a>
-            <a href="#contact">05. Contact</a>
-        </div>
+  <!-- NAV -->
+  <header class="nav" id="navbar">
+    <a href="#home" class="brand" aria-label="Home"><span class="brand-mark">GJ</span><span class="brand-name">Goutham Josh</span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#github">GitHub</a>
+      <a href="#stack">Stack</a>
+      <a href="#contact">Contact</a>
     </nav>
+    <div class="nav-tools">
+      <button class="kbd-btn" id="paletteBtn" aria-label="Open command menu"><i class="fa-solid fa-magnifying-glass"></i><kbd>Ctrl K</kbd></button>
+      <button class="icon-btn" id="themeBtn" aria-label="Toggle theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about">About</a><a href="#projects">Projects</a><a href="#github">GitHub</a><a href="#stack">Stack</a><a href="#contact">Contact</a>
+    </div>
+  </header>
 
-    <!-- === HOME === -->
-    <section id="home">
-        <div class="hero-bg" aria-hidden="true">
-            <div class="hex-grid"></div>
-        </div>
-        <div class="hero-inner">
-            <div class="hero-tag" data-reveal>
-                <span class="blink-dot"></span>
-                <span id="statusText">AVAILABLE FOR HIRE</span>
-            </div>
-            <h1 class="hero-name" data-reveal>
-                <span class="name-line">GOUTHAM</span>
-                <span class="name-line accent-stroke">JOSH</span>
-            </h1>
-            <div class="hero-role" data-reveal>
-                <span class="role-prefix">~/</span>
-                <span class="typing-target" id="typingTarget"></span>
-                <span class="cursor-blink" aria-hidden="true">█</span>
-            </div>
-            <p class="hero-bio" data-reveal>
-                A <span class="highlight" id="ageDisplay">19</span>-year-old BCA student with a deep passion for 
-                <span class="highlight">cybersecurity</span>, bot development & automation.
-            </p>
-            <div class="hero-actions" data-reveal>
-                <a href="#projects" class="btn-primary">View Work <i class="fa-solid fa-arrow-right"></i></a>
-                <a href="assets/Goutham_Josh_CV.pdf" class="btn-ghost" download>Download CV <i class="fa-solid fa-download"></i></a>
-            </div>
-            <div class="social-row" data-reveal>
-                <a href="https://www.linkedin.com/in/imgouthamjosh/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com/GouthamSER" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-                <a href="https://t.me/im_goutham_josh" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
-                <a href="https://www.facebook.com/goutham.josh.58" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-            </div>
-
-            <!-- Music player -->
-            <div class="music-terminal" data-reveal>
-                <div class="terminal-header">
-                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                    <span class="terminal-title">music.sh</span>
-                </div>
-                <div class="terminal-body">
-                    <div class="eq-wrap">
-                        <div class="equalizer" id="equalizer" aria-hidden="true">
-                            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                        </div>
-                        <span class="now-playing" id="nowPlaying">// no track playing</span>
-                    </div>
-                    <div class="track-btns">
-                        <button class="track-btn" id="pb1" data-idx="0">▶ track_01</button>
-                        <button class="track-btn" id="pb2" data-idx="1">▶ track_02</button>
-                        <button class="track-btn" id="pb3" data-idx="2">▶ track_03</button>
-                    </div>
-                </div>
-            </div>
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="wrap hero-inner">
+        <div class="status reveal"><span class="pulse"></span><span>Open to internships &amp; collaborations</span></div>
+        <h1 class="hero-name reveal">Goutham <em>Josh</em></h1>
+        <p class="hero-role reveal"><span class="prompt">~/</span><span id="typingTarget"></span><span class="caret" aria-hidden="true"></span></p>
+        <p class="hero-bio reveal">
+          <span id="ageDisplay">20</span>-year-old BCA student from Kerala. I build and maintain
+          <b>Telegram &amp; WhatsApp bots</b>, ship <b>Android apps</b>, and automate the boring parts —
+          with AI as my pair-programmer.
+        </p>
+        <div class="hero-cta reveal">
+          <a href="#projects" class="btn btn-primary">See my work <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="assets/Goutham_Josh_CV.pdf" class="btn btn-ghost" download>Download CV <i class="fa-solid fa-download"></i></a>
+          <a href="https://github.com/GouthamSER" class="btn btn-ghost" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
         </div>
 
-        <!-- Scroll indicator -->
-        <div class="scroll-hint" aria-hidden="true">
-            <span>scroll</span>
-            <div class="scroll-line"></div>
+        <div class="hero-stats reveal" id="heroStats">
+          <div><span class="num" data-stat="repos">23</span><span class="lbl">Public repos</span></div>
+          <div><span class="num" data-stat="stars">12</span><span class="lbl">Stars earned</span></div>
+          <div><span class="num" data-stat="forks">46</span><span class="lbl">Forks of my code</span></div>
+          <div><span class="num" data-stat="followers">18</span><span class="lbl">Followers</span></div>
         </div>
+      </div>
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Python</span><span>Pyrogram</span><span>Kotlin</span><span>Jetpack Compose</span><span>Baileys</span><span>MongoDB</span><span>Redis</span><span>aiohttp</span><span>Docker</span><span>Koyeb</span><span>Bash</span><span>Telegram API</span>
+          <span>Python</span><span>Pyrogram</span><span>Kotlin</span><span>Jetpack Compose</span><span>Baileys</span><span>MongoDB</span><span>Redis</span><span>aiohttp</span><span>Docker</span><span>Koyeb</span><span>Bash</span><span>Telegram API</span>
+        </div>
+      </div>
     </section>
 
-    <!-- === ABOUT === -->
+    <!-- ABOUT / BENTO -->
     <section id="about">
-        <div class="section-inner">
-            <div class="section-label" data-reveal><span>02</span> about me</div>
-            <div class="about-grid">
-                <div class="about-photo-col" data-reveal>
-                    <div class="photo-frame">
-                        <img src="assests/main.jpg" alt="Portrait of Goutham Josh" class="about-img">
-                        <div class="photo-corner tl"></div>
-                        <div class="photo-corner tr"></div>
-                        <div class="photo-corner bl"></div>
-                        <div class="photo-corner br"></div>
-                    </div>
-                    <div class="stats-card">
-                        <div class="stat">
-                            <span class="stat-num" id="ageStatDisplay">19</span>
-                            <span class="stat-label">Years Old</span>
-                        </div>
-                        <div class="stat-divider"></div>
-                        <div class="stat">
-                            <span class="stat-num">4+</span>
-                            <span class="stat-label">Projects</span>
-                        </div>
-                        <div class="stat-divider"></div>
-                        <div class="stat">
-                            <span class="stat-num">BCA</span>
-                            <span class="stat-label">Degree</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-text-col" data-reveal>
-                    <h2 class="section-title">Who Am I</h2>
-                    <p class="about-p">I'm a BCA student with a strong focus on <span class="hl">cybersecurity</span> and <span class="hl">bot development</span>. I enjoy building automation tools, learning applied security techniques, and contributing to open source.</p>
-                    <p class="about-p">Currently exploring the intersection of bot automation and security research — always open to collaborations, challenges or internships.</p>
-                    <ul class="about-list">
-                        <li><i class="fa-solid fa-terminal" aria-hidden="true"></i> Bot development (Telegram / WhatsApp)</li>
-                        <li><i class="fa-solid fa-code" aria-hidden="true"></i> Automation & scripting (Python)</li>
-                        <li><i class="fa-solid fa-database" aria-hidden="true"></i> MongoDB &amp; Redis databases</li>
-                        <li><i class="fa-brands fa-git-alt" aria-hidden="true"></i> Version control &amp; deployment (Git)</li>
-                    </ul>
-                    <div class="about-btns">
-                        <a href="assets/Goutham_Josh_CV.pdf" class="btn-primary" download>Download CV <i class="fa-solid fa-download"></i></a>
-                        <a href="#contact" class="btn-ghost">Contact Me <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
+      <div class="wrap">
+        <p class="eyebrow reveal">01 — About</p>
+        <h2 class="title reveal">A builder who <em>ships &amp; fixes</em> things.</h2>
+
+        <div class="bento">
+          <article class="tile tile-photo reveal">
+            <img src="assets/main.jpg" alt="Portrait of Goutham Josh" loading="lazy">
+            <div class="photo-tag"><i class="fa-solid fa-location-dot"></i> Attingal, Kerala</div>
+          </article>
+
+          <article class="tile tile-bio reveal">
+            <h3>Who I am</h3>
+            <p>I'm a BCA student at Chinmaya College, Thrissur. I work mostly by <b>forking, debugging, extending and porting</b> open-source bot codebases — fixing crashes, hardening deployments and adding features — and I use AI tooling heavily to move faster.</p>
+            <p>Curious about <b>cybersecurity</b> and how automation and security meet. Always up for a challenge, internship or collab.</p>
+          </article>
+
+          <article class="tile tile-now reveal">
+            <div class="tile-head"><span class="pulse small"></span> Building now</div>
+            <h3>F2L Downloader</h3>
+            <p>Android download manager in Kotlin + Jetpack Compose — multi-thread downloads, pause/resume, in-app update checker.</p>
+            <div class="chips"><span>Kotlin</span><span>Compose</span><span>OkHttp</span><span>v3.4</span></div>
+          </article>
+
+          <article class="tile tile-focus reveal">
+            <h3>What I do</h3>
+            <ul class="focus-list">
+              <li><i class="fa-brands fa-telegram"></i> Telegram bots — autofilter, file-to-link, RSS &amp; leech</li>
+              <li><i class="fa-brands fa-whatsapp"></i> WhatsApp bots on Baileys</li>
+              <li><i class="fa-brands fa-android"></i> Android apps with Compose</li>
+              <li><i class="fa-solid fa-cloud-arrow-up"></i> Deploy to Koyeb, Render, Heroku &amp; VPS</li>
+            </ul>
+          </article>
+
+          <article class="tile tile-edu reveal">
+            <h3>Education</h3>
+            <p class="big">BCA</p>
+            <p class="muted">Chinmaya College, Kolazhy · Thrissur</p>
+          </article>
+
+          <article class="tile tile-music reveal">
+            <div class="tile-head"><i class="fa-solid fa-headphones"></i> music.sh</div>
+            <div class="eq" id="equalizer" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <p class="now" id="nowPlaying">// no track playing</p>
+            <div class="track-btns">
+              <button class="track-btn" id="pb1" data-idx="0">▶ 01</button>
+              <button class="track-btn" id="pb2" data-idx="1">▶ 02</button>
+              <button class="track-btn" id="pb3" data-idx="2">▶ 03</button>
             </div>
+          </article>
         </div>
+      </div>
     </section>
 
-    <!-- === SKILLS === -->
-    <section id="skills">
-        <div class="section-inner">
-            <div class="section-label" data-reveal><span>03</span> skills</div>
-            <h2 class="section-title" data-reveal>Tech Stack</h2>
-            <p class="section-sub" data-reveal>Languages, frameworks and tools I work with regularly.</p>
-            <div class="skills-container" data-reveal>
-                <div class="skill-category">
-                    <h3 class="skill-cat-title">Languages</h3>
-                    <div class="skill-pills">
-                        <div class="skill-pill"><i class="fa-solid fa-c"></i> C</div>
-                        <div class="skill-pill"><i class="fa-solid fa-c"></i>++&nbsp; C++</div>
-                        <div class="skill-pill"><i class="fa-brands fa-java"></i> Java</div>
-                        <div class="skill-pill"><i class="fa-brands fa-python"></i> Python</div>
-                        <div class="skill-pill"><i class="fa-brands fa-js"></i> JavaScript</div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3 class="skill-cat-title">Web &amp; DB</h3>
-                    <div class="skill-pills">
-                        <div class="skill-pill"><i class="fa-brands fa-html5"></i> HTML</div>
-                        <div class="skill-pill"><i class="fa-brands fa-css3-alt"></i> CSS</div>
-                        <div class="skill-pill"><i class="fa-solid fa-database"></i> SQL / DBMS</div>
-                        <div class="skill-pill"><i class="fa-solid fa-leaf"></i> MongoDB</div>
-                        <div class="skill-pill"><i class="fa-solid fa-bolt"></i> Redis</div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3 class="skill-cat-title">Tools &amp; Frameworks</h3>
-                    <div class="skill-pills">
-                        <div class="skill-pill"><i class="fa-brands fa-git-alt"></i> Git</div>
-                        <div class="skill-pill"><i class="fa-brands fa-node-js"></i> Node.js</div>
-                        <div class="skill-pill"><i class="fa-brands fa-python"></i> Pyrogram</div>
-                        <div class="skill-pill"><i class="fa-brands fa-telegram"></i> Telegram API</div>
-                        <div class="skill-pill"><i class="fa-brands fa-whatsapp"></i> Baileys</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- === PROJECTS === -->
+    <!-- PROJECTS -->
     <section id="projects">
-        <div class="section-inner">
-            <div class="section-label" data-reveal><span>04</span> projects</div>
-            <h2 class="section-title" data-reveal>Selected Works</h2>
-            <p class="section-sub" data-reveal>Repositories, demos and quick tech notes.</p>
-            <div class="projects-grid">
+      <div class="wrap">
+        <p class="eyebrow reveal">02 — Projects</p>
+        <h2 class="title reveal">Selected <em>work</em></h2>
+        <p class="sub reveal">Bots, tools and apps I build, fork, fix and run in production.</p>
 
-                <article class="project-card" data-reveal>
-                    <div class="card-top">
-                        <div class="card-num">01</div>
-                        <div class="card-links">
-                            <a href="https://github.com/GouthamSER/KuttuBot" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-                        </div>
-                    </div>
-                    <img src="assests/projects/kuttubot.jpg" alt="KuttuBot preview" class="card-img">
-                    <div class="card-body">
-                        <div class="card-badge advanced">Advanced</div>
-                        <h3 class="card-title">KuttuBot</h3>
-                        <p class="card-desc">Fast, secure Telegram autofilter bot — deploys easily on Koyeb, Heroku, Render, or a VPS.</p>
-                        <div class="card-tech">
-                            <span>Python</span><span>Pyrogram</span><span>MongoDB</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="project-card" data-reveal>
-                    <div class="card-top">
-                        <div class="card-num">02</div>
-                        <div class="card-links">
-                            <a href="https://github.com/GouthamSER/5DB-tg" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-                        </div>
-                    </div>
-                    <img src="assests/projects/5db-tg.jpg" alt="5DB-tg preview" class="card-img">
-                    <div class="card-body">
-                        <div class="card-badge stable">Stable</div>
-                        <h3 class="card-title">5DB-tg</h3>
-                        <p class="card-desc">Telegram auto-filter bot built on a 5-database setup, made for effortless Render deployment.</p>
-                        <div class="card-tech">
-                            <span>Python</span><span>Pyrogram</span><span>MongoDB</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="project-card" data-reveal>
-                    <div class="card-top">
-                        <div class="card-num">03</div>
-                        <div class="card-links">
-                            <a href="https://github.com/GouthamSER/auto-filter-bot-v1" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-                        </div>
-                    </div>
-                    <img src="assests/projects/auto-filter-bot-v1.jpg" alt="auto-filter-bot-v1 preview" class="card-img">
-                    <div class="card-body">
-                        <div class="card-badge free">Free</div>
-                        <h3 class="card-title">auto-filter-bot-v1</h3>
-                        <p class="card-desc">Lightweight Telegram auto-filter bot — basics only, no bloat, easy to deploy.</p>
-                        <div class="card-tech">
-                            <span>Python</span><span>Pyrogram</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="project-card" data-reveal>
-                    <div class="card-top">
-                        <div class="card-num">04</div>
-                        <div class="card-links">
-                            <a href="https://github.com/GouthamSER/TG-FileStreamBot" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-                        </div>
-                    </div>
-                    <img src="assests/projects/tg-filestreambot.jpg" alt="TG-FileStreamBot preview" class="card-img">
-                    <div class="card-body">
-                        <div class="card-badge tool">Tool</div>
-                        <h3 class="card-title">TG-FileStreamBot</h3>
-                        <p class="card-desc">File-to-link Telegram bot with Pyrogram/pyrofork + aiohttp — built for streaming and downloads.</p>
-                        <div class="card-tech">
-                            <span>Python</span><span>Pyrogram</span><span>Aiohttp</span>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
-            <div class="projects-footer" data-reveal>
-                <a class="btn-ghost" href="https://github.com/GouthamSER?tab=repositories" target="_blank" rel="noopener noreferrer">
-                    <i class="fa-brands fa-github"></i> All repositories on GitHub
-                </a>
-            </div>
+        <div class="filters reveal" role="tablist" aria-label="Filter projects">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="telegram">Telegram</button>
+          <button class="chip" data-filter="whatsapp">WhatsApp</button>
+          <button class="chip" data-filter="android">Android</button>
+          <button class="chip" data-filter="tools">Tools</button>
         </div>
+
+        <div class="projects" id="projectGrid">
+
+          <article class="card feature reveal" data-cat="telegram">
+            <img class="card-img" src="assets/projects/kuttubot.jpg" alt="KuttuBot logo" loading="lazy">
+            <div class="card-body">
+              <div class="card-meta"><span class="badge b-adv">Most popular</span><span class="gh-stat"><i class="fa-solid fa-star"></i> 8 · <i class="fa-solid fa-code-fork"></i> 38</span></div>
+              <h3>KuttuBot</h3>
+              <p>Fast, secure Telegram autofilter bot. One-click deploy on Koyeb, Heroku, Render or a VPS.</p>
+              <div class="tech"><span>Python</span><span>Pyrogram</span><span>MongoDB</span></div>
+              <a class="card-link" href="https://github.com/GouthamSER/KuttuBot" target="_blank" rel="noopener noreferrer">View repo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </article>
+
+          <article class="card feature reveal" data-cat="android">
+            <div class="card-art art-android" aria-hidden="true"><i class="fa-brands fa-android"></i></div>
+            <div class="card-body">
+              <div class="card-meta"><span class="badge b-new">New · 2026</span><span class="gh-stat">v3.4</span></div>
+              <h3>F2L Downloader</h3>
+              <p>Android download manager: multi-thread parallel downloads, pause/resume, retry, Wi-Fi auto-resume, clipboard link banner and a GitHub-Releases update checker.</p>
+              <div class="tech"><span>Kotlin</span><span>Jetpack Compose</span><span>OkHttp</span><span>Coroutines</span></div>
+              <a class="card-link" href="https://github.com/GouthamSER/F2L-Downloader-App" target="_blank" rel="noopener noreferrer">View repo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </article>
+
+          <article class="card reveal" data-cat="whatsapp">
+            <img class="card-img" src="assets/projects/kuttubotmd.jpg" alt="KuttuBot-MD logo" loading="lazy">
+            <div class="card-body">
+              <div class="card-meta"><span class="badge b-stable">WhatsApp</span></div>
+              <h3>KuttuBot-MD</h3>
+              <p>Multi-device WhatsApp bot on Baileys — media tools, TTS, stickers; deploy blueprints for Heroku &amp; Render.</p>
+              <div class="tech"><span>JavaScript</span><span>Baileys</span><span>ffmpeg</span></div>
+              <a class="card-link" href="https://github.com/GouthamSER?tab=repositories&q=kuttubot" target="_blank" rel="noopener noreferrer">Find on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </article>
+
+          <article class="card reveal" data-cat="telegram">
+            <img class="card-img" src="assets/projects/2db.jpg" alt="5DB-tg logo" loading="lazy">
+            <div class="card-body">
+              <div class="card-meta"><span class="badge b-stable">Stable</span><span class="gh-stat"><i class="fa-solid fa-star"></i> 1 · <i class="fa-solid fa-code-fork"></i> 3</span></div>
+              <h3>5DB-tg</h3>
+              <p>Autofilter bot on a 5-database setup, built for painless Render deployment.</p>
+              <div class="tech"><span>Python</span><span>Pyrogram</span><span>MongoDB</span></div>
+              <a class="card-link" href="https://github.com/GouthamSER/5DB-tg" target="_blank" rel="noopener noreferrer">View repo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </article>
+
+          <article class="card reveal" data-cat="telegram">
+            <div class="card-art art-tg" aria-hidden="true"><i class="fa-solid fa-filter"></i></div>
+            <div class="card-body">
+              <div class="card-meta"><span class="badge b-free">Free</span><span class="gh-stat"><i class="fa-solid fa-star"></i> 2 · <i class="fa-solid fa-code-fork"></i> 2</span></div>
+              <h3>auto-filter-bot-v1</h3>
+              <p>Lightweight autofilter bot — just the basics, no bloat, easy to deploy. Also runs as a cluster on Koyeb.</p>
+              <div class="tech"><span>Python</span><span>Pyrogram</span></div>
+              <a class="card-link" href="https://github.com/GouthamSER/auto-filter-bot-v1" target="_blank" rel="noopener noreferrer">View repo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </article>
+
+          <article class="card reveal" data-cat="telegram tools">
+            <img class="card-img" src="assets/projects/file2link.jpg" alt="File to link logo" loading="lazy">
+            <div class="card-body">
+              <div class="card-meta"><span class="badge b-tool">Tool</span><span class="gh-stat"><i class="fa-solid fa-star"></i> 1</span></div>
+              <h3>TG-FileStreamBot</h3>
+              <p>Turns Telegram files into direct links for FDM / 1DM. Multi-client load balancing, aiohttp streaming, Docker-ready.</p>
+              <div class="tech"><span>Python</span><span>aiohttp</span><span>Pyrogram</span></div>
+              <a class="card-link" href="https://github.com/GouthamSER/TG-FileStreamBot" target="_blank" rel="noopener noreferrer">View repo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </article>
+
+          <article class="card reveal" data-cat="telegram tools">
+            <div class="card-art art-rss" aria-hidden="true"><i class="fa-solid fa-rss"></i></div>
+            <div class="card-body">
+              <div class="card-meta"><span class="badge b-tool">Automation</span></div>
+              <h3>Tamilmv-Rss-Bot</h3>
+              <p>RSS watcher that posts new releases to Telegram. Runs alongside other bots through a multi-cluster Koyeb setup.</p>
+              <div class="tech"><span>Python</span><span>RSS</span><span>Koyeb</span></div>
+              <a class="card-link" href="https://github.com/GouthamSER/Tamilmv-Rss-Bot" target="_blank" rel="noopener noreferrer">View repo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </article>
+
+          <article class="card reveal" data-cat="tools">
+            <div class="card-art art-proxy" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="card-body">
+              <div class="card-meta"><span class="badge b-tool">Security</span></div>
+              <h3>tg-socks5-proxy</h3>
+              <p>One-shot Bash script that deploys an authenticated SOCKS5 proxy for Telegram.</p>
+              <div class="tech"><span>Bash</span><span>SOCKS5</span><span>Linux</span></div>
+              <a class="card-link" href="https://github.com/GouthamSER/tg-socks5-proxy" target="_blank" rel="noopener noreferrer">View repo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </article>
+
+          <article class="card reveal" data-cat="tools">
+            <div class="card-art art-term" aria-hidden="true"><i class="fa-solid fa-terminal"></i></div>
+            <div class="card-body">
+              <div class="card-meta"><span class="badge b-tool">Tool</span></div>
+              <h3>StringSession</h3>
+              <p>Termux-based generator for Pyrogram v2 string sessions — run on your phone, no PC needed.</p>
+              <div class="tech"><span>Python</span><span>Termux</span><span>Pyrogram</span></div>
+              <a class="card-link" href="https://github.com/GouthamSER/StringSession" target="_blank" rel="noopener noreferrer">View repo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </article>
+
+        </div>
+        <p class="empty" id="emptyMsg" hidden>Nothing here yet.</p>
+      </div>
     </section>
 
-    <!-- === CONTACT === -->
+    <!-- LIVE GITHUB -->
+    <section id="github">
+      <div class="wrap">
+        <p class="eyebrow reveal">03 — GitHub</p>
+        <h2 class="title reveal">Live from <em>GouthamSER</em></h2>
+        <p class="sub reveal">Latest pushed repositories, pulled straight from the GitHub API.</p>
+        <div class="gh-grid" id="ghGrid">
+          <div class="gh-skel"></div><div class="gh-skel"></div><div class="gh-skel"></div><div class="gh-skel"></div><div class="gh-skel"></div><div class="gh-skel"></div>
+        </div>
+        <div class="center reveal">
+          <a class="btn btn-ghost" href="https://github.com/GouthamSER?tab=repositories" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> All repositories</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- STACK -->
+    <section id="stack">
+      <div class="wrap">
+        <p class="eyebrow reveal">04 — Stack</p>
+        <h2 class="title reveal">Tools I <em>reach for</em></h2>
+        <div class="stack-grid">
+          <div class="stack-col reveal">
+            <h3>Languages</h3>
+            <div class="pills">
+              <span class="pill"><i class="fa-brands fa-python"></i> Python</span>
+              <span class="pill"><i class="fa-brands fa-js"></i> JavaScript</span>
+              <span class="pill"><i class="fa-solid fa-mobile-screen"></i> Kotlin</span>
+              <span class="pill"><i class="fa-solid fa-terminal"></i> Bash</span>
+              <span class="pill"><i class="fa-brands fa-java"></i> Java</span>
+              <span class="pill"><i class="fa-solid fa-c"></i> C / C++</span>
+            </div>
+          </div>
+          <div class="stack-col reveal">
+            <h3>Bots &amp; backend</h3>
+            <div class="pills">
+              <span class="pill"><i class="fa-brands fa-telegram"></i> Pyrogram / pyrofork</span>
+              <span class="pill"><i class="fa-brands fa-whatsapp"></i> Baileys</span>
+              <span class="pill"><i class="fa-brands fa-node-js"></i> Node.js</span>
+              <span class="pill"><i class="fa-solid fa-bolt"></i> aiohttp</span>
+              <span class="pill"><i class="fa-solid fa-leaf"></i> MongoDB</span>
+              <span class="pill"><i class="fa-solid fa-database"></i> Redis · SQL</span>
+            </div>
+          </div>
+          <div class="stack-col reveal">
+            <h3>Ship &amp; run</h3>
+            <div class="pills">
+              <span class="pill"><i class="fa-brands fa-git-alt"></i> Git · GitHub Actions</span>
+              <span class="pill"><i class="fa-brands fa-docker"></i> Docker</span>
+              <span class="pill"><i class="fa-solid fa-cloud"></i> Koyeb · Render · Heroku</span>
+              <span class="pill"><i class="fa-brands fa-linux"></i> Linux VPS</span>
+              <span class="pill"><i class="fa-brands fa-android"></i> Android · Compose</span>
+              <span class="pill"><i class="fa-solid fa-wand-magic-sparkles"></i> AI-assisted dev</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
     <section id="contact">
-        <div class="section-inner">
-            <div class="section-label" data-reveal><span>05</span> contact</div>
-            <h2 class="section-title" data-reveal>Get In Touch</h2>
-            <p class="section-sub" data-reveal>Open to collaborations, internships &amp; new challenges.</p>
+      <div class="wrap">
+        <p class="eyebrow reveal">05 — Contact</p>
+        <h2 class="title reveal">Let's build <em>something</em>.</h2>
+        <p class="sub reveal">Open to internships, collabs and new challenges.</p>
 
-            <div class="contact-grid" data-reveal>
-                <form class="contact-form" id="contactForm" novalidate>
-                    <div class="field">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your name" required autocomplete="name">
-                    </div>
-                    <div class="field">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="you@email.com" required autocomplete="email">
-                    </div>
-                    <div class="field">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn-primary full-w">Send Message <i class="fa-solid fa-paper-plane"></i></button>
-                </form>
+        <div class="contact-grid">
+          <form class="form reveal" id="contactForm" novalidate>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required autocomplete="name">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@email.com" required autocomplete="email">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project…" required></textarea>
+            <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+            <button type="submit" class="btn btn-primary full">Send message <i class="fa-solid fa-paper-plane"></i></button>
+          </form>
 
-                <div class="contact-aside">
-                    <div class="contact-info-card">
-                        <div class="info-item">
-                            <i class="fa-solid fa-envelope"></i>
-                            <div>
-                                <span class="info-label">Email</span>
-                                <a href="mailto:gouthamjosh22@gmail.com" class="info-val">gouthamjosh22@gmail.com</a>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <i class="fa-brands fa-telegram"></i>
-                            <div>
-                                <span class="info-label">Telegram</span>
-                                <a href="https://t.me/im_goutham_josh" target="_blank" rel="noopener noreferrer" class="info-val">@im_goutham_josh</a>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <i class="fa-brands fa-whatsapp"></i>
-                            <div>
-                                <span class="info-label">WhatsApp</span>
-                                <a href="https://wa.me/+91703489741?text=Hi%20Goutham" target="_blank" rel="noopener noreferrer" class="info-val">+91 703 489 741</a>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <i class="fa-brands fa-github"></i>
-                            <div>
-                                <span class="info-label">GitHub</span>
-                                <a href="https://github.com/GouthamSER" target="_blank" rel="noopener noreferrer" class="info-val">GouthamSER</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="quick-contact">
-                        <a class="btn-tg" href="https://t.me/im_goutham_josh" target="_blank" rel="noopener noreferrer">
-                            <i class="fa-brands fa-telegram"></i> Message on Telegram
-                        </a>
-                        <a class="btn-wa" href="https://wa.me/+91703489741?text=Hi%20Goutham" target="_blank" rel="noopener noreferrer">
-                            <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
-                        </a>
-                    </div>
-                </div>
-            </div>
+          <div class="contact-side reveal">
+            <a class="contact-item" href="mailto:gouthamjosh22@gmail.com"><i class="fa-solid fa-envelope"></i><span><small>Email</small>gouthamjosh22@gmail.com</span></a>
+            <a class="contact-item" href="https://t.me/im_goutham_josh" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-telegram"></i><span><small>Telegram</small>@im_goutham_josh</span></a>
+            <a class="contact-item" href="https://wa.me/91703489741?text=Hi%20Goutham" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i><span><small>WhatsApp</small>+91 703 489 741</span></a>
+            <a class="contact-item" href="https://www.linkedin.com/in/imgouthamjosh/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i><span><small>LinkedIn</small>imgouthamjosh</span></a>
+            <a class="contact-item" href="https://github.com/GouthamSER" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i><span><small>GitHub</small>GouthamSER</span></a>
+          </div>
         </div>
+      </div>
     </section>
+  </main>
 
-    <!-- === FOOTER === -->
-    <footer>
-        <div class="footer-inner">
-            <div class="footer-left">
-                <a href="#home" class="logo">
-                    <span class="logo-bracket">[</span>GJ<span class="logo-bracket">]</span>
-                </a>
-                <p>Built with <span aria-hidden="true">❤️</span> · <span id="footerYear">2026</span> Goutham Josh</p>
-            </div>
-            <div class="footer-right">
-                <a href="https://www.linkedin.com/in/imgouthamjosh/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com/GouthamSER" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-                <a href="https://t.me/im_goutham_josh" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
-                <a href="https://www.facebook.com/goutham.josh.58" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-            </div>
-        </div>
-    </footer>
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <p>© <span id="footerYear">2026</span> Goutham Josh · Made in Kerala</p>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/imgouthamjosh/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://github.com/GouthamSER" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://t.me/im_goutham_josh" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+        <a href="https://www.facebook.com/goutham.josh.58" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+      </div>
+    </div>
+  </footer>
 
-    <button id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+  <button id="backToTop" class="icon-btn to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
-    <script src="myscript.js"></script>
+  <!-- COMMAND PALETTE -->
+  <div class="palette" id="palette" hidden>
+    <div class="palette-box" role="dialog" aria-modal="true" aria-label="Command menu">
+      <input id="paletteInput" type="text" placeholder="Jump to… (projects, github, contact, cv, theme)" autocomplete="off" aria-label="Search commands">
+      <ul id="paletteList"></ul>
+    </div>
+  </div>
+
+  <script src="myscript.js"></script>
 </body>
-    </html>
+</html>
