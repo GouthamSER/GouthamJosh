@@ -133,8 +133,10 @@ kbd { font-family: var(--mono); font-size: 11px; padding: 1px 6px; border: 1px s
 .hero-stats .lbl { font-family: var(--mono); font-size: 11.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
 
 .marquee { margin-top: 60px; overflow: hidden; border-block: 1px solid var(--border); padding: 16px 0; mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
-.marquee-track { display: flex; gap: 44px; width: max-content; animation: scroll 38s linear infinite; font-family: var(--mono); font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; }
+.marquee-track { display: flex; width: max-content; animation: scroll 38s linear infinite; font-family: var(--mono); font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; will-change: transform; }
+.marquee-track span { flex: none; padding-right: 44px; white-space: nowrap; }
 .marquee-track span::before { content: "✦"; color: var(--accent); margin-right: 44px; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
 @keyframes scroll { to { transform: translateX(-50%); } }
 
 /* ---------- Section heads ---------- */
@@ -314,6 +316,10 @@ kbd { font-family: var(--mono); font-size: 11px; padding: 1px 6px; border: 1px s
   .footer-inner { flex-direction: column; text-align: center; }
 }
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  /* calm everything except the slow tech marquee */
+  .aurora i, .pulse, .caret, .eq.playing span, .gh-skel { animation: none !important; }
+  .reveal, .card, .tile, .btn, .pill, .contact-item, .gh-card { transition: none !important; }
+  html { scroll-behavior: auto; }
   .js .reveal { opacity: 1; transform: none; }
+  .marquee-track { animation-duration: 90s; }
 }
